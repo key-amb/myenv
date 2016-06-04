@@ -1,20 +1,34 @@
-HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
+# load common shrc
+. $MYENV_DIR/common/shrc.d/load_apps.shrc
+. $MYENV_DIR/common/shrc.d/aliases
 
+# Colors
 autoload -U colors
 colors
 
+# auto completion
 autoload -U compinit
 compinit
 
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # ignore case matching
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+setopt auto_list  # list complementary items
+setopt correct    # correct misspell
+setopt auto_menu
+setopt extended_glob
+
+# cd & pushd
 setopt auto_cd    # cd to directory with directory path only
 setopt auto_pushd # pushd when cd
-setopt correct    # correct misspell
-setopt auto_list  # list complementary items
-setopt extended_history # record executed time to history
+setopt pushd_ignore_dups
 
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+# history
+setopt extended_history # record executed time to history
+setopt hist_ignore_all_dups
+setopt hist_save_nodups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
 
 ## prompt
 setopt prompt_subst
@@ -34,20 +48,27 @@ SPROMPT=$tmp_sprompt
   PROMPT="%{${fg[white]}%}${HOST%%.*} ${PROMPT}"
 ;
 
-## aliases
-alias ls='ls --show-control-chars --color=auto'
-alias ll='ls -l'
-alias la='ls -a'
-alias vi='vim'
-alias vi-s='vim -S ~/.vim.session'
+unset tmp_prompt tmp_prompt2 tmp_rprompt tmp_sprompt
 
+# vcs info
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' formats '(%s)-[%b]'
+zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
+precmd () {
+    psvar=()
+    LANG=en_US.UTF-8 vcs_info
+    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+}
+RPROMPT="%1(v|%F{magenta}%1v%f%F{green}[%~]%f|%F{green}[%~]%f)"
+
+# remove duplicate PATH
+typeset -U path PATH
+
+############################################################
+# extentional settings
 if [ -d $HOME/.zshrc.d ]; then
   for file in `find $HOME/.zshrc.d -mindepth 1`; do
     source $file
   done
 fi
 
-# plenv
-if [[ -e $HOME/.plenv ]]; then
-  eval "$(plenv init -)"
-fi
