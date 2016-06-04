@@ -1,7 +1,9 @@
-alias ls='ls --color=auto'
+alias ls='ls --show-control-chars --color=auto'
+alias ll='ls -lF'
+alias la='ls -a'
+
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-alias ll='ls -lF'
-alias la='ls -a'
+alias refresh="exec $SHELL -l"
