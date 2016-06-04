@@ -1,0 +1,9 @@
+# bash
+
+UD_LINK_TARGETS=(.vimrc .zshenv .zshrc)
+
+for _lt in ${UD_LINK_TARGETS[@]}; do
+  symlink $_lt
+done
+
+unset _lt
