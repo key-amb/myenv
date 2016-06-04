@@ -1,0 +1,33 @@
+# plenv
+if [ -d $HOME/.plenv/shims ]; then
+  if echo $PATH | grep $HOME/.plenv/shims >/dev/null 2>&1; then
+    :
+  else
+    eval "$(plenv init -)"
+  fi
+  PATH=$HOME/.plenv/shims:$PATH
+fi
+# rbenv
+if [ -d $HOME/.rbenv/shims ]; then
+  PATH=$HOME/.rbenv/bin:$PATH
+  if echo $PATH | grep $HOME/.rbenv/shims >/dev/null 2>&1; then
+    :
+  else
+    eval "$(rbenv init -)"
+  fi
+  PATH=$HOME/.rbenv/shims:$PATH
+fi
+# pyenv
+if [ -d $HOME/.pyenv/shims ]; then
+  PATH=$HOME/.pyenv/bin:$PATH
+  if echo $PATH | grep $HOME/.pyenv/shims >/dev/null 2>&1; then
+    :
+  else
+    eval "$(pyenv init -)"
+  fi
+  PATH=$HOME/.pyenv/shims:$PATH
+fi
+# nvm
+if [ -d ${HOME}/.nvm ]; then
+  export NVM_DIR="${HOME}/.nvm"
+fi
