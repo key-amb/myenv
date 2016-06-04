@@ -65,12 +65,12 @@ _symlink() {
 
 symlink() {
   local link="${HOME}/$1"
-  local src="${PROJ_DIR}/${1}";
+  local src="${THE_ENV_DIR}/${1}";
   _symlink $src $link
 }
 
 symlink2() {
-  local src=$PROJ_DIR/$1
+  local src=$THE_ENV_DIR/$1
   local link=$2
   _symlink $src $link
 }
