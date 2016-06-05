@@ -32,45 +32,19 @@ init() {
   mk_custom_rc_dir
 }
 
-symlink_asis() {
-  local src=$1
-  local dest=$2
-
-  if [ -L $dest ]; then
-    local linked_read=$(readlink $dest)
-    if [[ $linked_read = $src ]]; then
-      echo "[ok] already linked: ${dest} -> ${src}";
-    else
-      echo "[warn] link different: ${dest} -> ${linked_read}. Expected: ${src}";
-    fi
-    return 0;
-  elif [ -d $dest ]; then
-    echo "[warn] directory already exists: $dest";
-    return 0;
-  elif [ -f $dest ]; then
-    echo "[warn] file already exists: $dest";
-    return 0;
-  fi
-
-  if [ -e $src ]; then
-    ln -s $src $dest;
-    echo "[ok] linked: $dest -> ${src}";
-  else
-    echo "[error] not exist: ${src}";
-    return 1;
-  fi
-
-  return 0;
-}
+LINKER="$BASE_DIR/submodule/bash-links/links --verbose"
+if [[ ${LINKS_FORCE:-} ]]; then
+  LINKER="${LINKER} --force"
+fi
 
 symlink() {
   local src="${THE_ENV_DIR}/${1}";
   local link="${HOME}/$1"
-  symlink_asis $src $link
+  $LINKER $src $link
 }
 
 symlink2() {
   local src=$THE_ENV_DIR/$1
   local link=$2
-  symlink_asis $src $link
+  $LINKER $src $link
 }
