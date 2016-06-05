@@ -32,7 +32,7 @@ init() {
   mk_custom_rc_dir
 }
 
-_symlink() {
+symlink_asis() {
   local src=$1
   local dest=$2
 
@@ -64,13 +64,13 @@ _symlink() {
 }
 
 symlink() {
-  local link="${HOME}/$1"
   local src="${THE_ENV_DIR}/${1}";
-  _symlink $src $link
+  local link="${HOME}/$1"
+  symlink_asis $src $link
 }
 
 symlink2() {
   local src=$THE_ENV_DIR/$1
   local link=$2
-  _symlink $src $link
+  symlink_asis $src $link
 }
