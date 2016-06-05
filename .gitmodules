@@ -1,0 +1,3 @@
+[submodule "submodule/bash-links"]
+	path = submodule/bash-links
+	url = git@github.com:key-amb/bash-links.git
