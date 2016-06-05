@@ -1,3 +1,6 @@
+# clenv
+. $MYENV_DIR/common/shrc.d/load_clenv.shrc
+
 # plenv
 if [ -d $HOME/.plenv/shims ]; then
   if echo $PATH | grep $HOME/.plenv/shims >/dev/null 2>&1; then
