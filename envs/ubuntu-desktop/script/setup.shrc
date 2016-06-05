@@ -1,5 +1,8 @@
 # bash
 
+. $BASE_DIR/lib/package/dpkg.bashrc
+
+# Make symlinks of dotfiles
 UD_LINK_TARGETS=(.vimrc .zshenv .zshrc)
 
 for _lt in ${UD_LINK_TARGETS[@]}; do
@@ -7,3 +10,6 @@ for _lt in ${UD_LINK_TARGETS[@]}; do
 done
 
 unset _lt
+
+# Install packages
+install_pkg git vim zsh tmux tree
