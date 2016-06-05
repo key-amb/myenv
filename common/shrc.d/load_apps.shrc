@@ -3,6 +3,7 @@
 
 # plenv
 if [ -d $HOME/.plenv/shims ]; then
+  PATH=$HOME/.plenv/bin:$PATH
   if echo $PATH | grep $HOME/.plenv/shims >/dev/null 2>&1; then
     :
   else
