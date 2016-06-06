@@ -72,3 +72,5 @@ if [ -d $HOME/.zshrc.d ]; then
   done
 fi
 
+# peco
+. $MYENV_DIR/common/shrc.d/peco.zshrc
