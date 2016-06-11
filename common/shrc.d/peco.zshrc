@@ -18,14 +18,26 @@ if which peco >/dev/null 2>&1; then
   bindkey '^r' peco-select-history
 
   # search repository
-  __repos="$HOME/gitrepos $HOME/my/repo $HOME/my/go/src"
+  __repos=($HOME/gitrepos $HOME/my/repos $HOME/my/go/src)
   function peco-cd-repository() {
-    DIR=$(\find ${__repos} -type d -a \! -regex '.*/\.git.*' | peco | head -n 1)
-    pushd $DIR > /dev/null
+    local _dirs repo
+    for repo in ${__repos[@]}; do
+      if [[ -d $repo ]]; then
+        _dirs+=( $(\find ${repo} -type d -a \! -regex '.*\.git.*') )
+      fi
+    done
+    local _dir=$(for _d in ${_dirs[@]}; do echo $_d; done | peco | head -n 1)
+    pushd $_dir > /dev/null
     zle clear-screen
   }
   function peco-find-repository() {
-    local l=$(\find ${__repos} -a \! -regex '.*/\.git.*' | peco)
+    local _files repo
+    for repo in ${__repos[@]}; do
+      if [[ -d $repo ]]; then
+        _files+=( $(\find ${repo} \! -regex '.*\.git.*') )
+      fi
+    done
+    local l=$(for _f in ${_files[@]}; do echo $_f; done | peco)
     BUFFER="${LBUFFER}${l}"
     CURSOR=$#BUFFER
     zle clear-screen
