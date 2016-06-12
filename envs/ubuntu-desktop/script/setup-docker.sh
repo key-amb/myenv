@@ -30,8 +30,16 @@ else
   install_docker
 fi
 
-SUDO_SYNC=1
-sync_file files/systemd/docker/service.conf /etc/systemd/system/docker.service.d/service.conf
+src=files/systemd/docker/service.conf
+dst=/etc/systemd/system/docker.service.d/service.conf
+if diff -u $THE_ENV_DIR/$src $dst >/dev/null 2>&1; then
+  echo "[info] No difference: $src to $dst"
+else
+  SUDO_SYNC=1
+  sync_file $src $dst
+  echo "[notice] Restart docker"
+  sudo systemctl restart docker
+fi
 
 exit
 
