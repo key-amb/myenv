@@ -50,6 +50,22 @@ symlink2() {
   $LINKER $src $link
 }
 
+sync_file() {
+  local src=$THE_ENV_DIR/$1
+  local dst=$2
+  local dst_dir=${dst%/*}
+  local sync_opts=""
+  if [[ ${SUDO_SYNC:-} ]]; then
+    sync_opts="sudo"
+  fi
+  $sync_opts mkdir -p $dst_dir
+  if $sync_opts diff -u $src $dst; then
+    echo "[info] No diff: $1 to $2"
+    return
+  fi
+  $sync_opts cp $src $dst
+}
+
 pre_exec_script() {
   [[ -z ${MYENV:-} ]] && return
   local pre_script="$PROJ_DIR/envs/$MYENV/script/pre-$(basename $0)"
