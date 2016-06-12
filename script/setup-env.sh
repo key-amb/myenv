@@ -10,7 +10,6 @@ echo "[START] setup $MYENV"
 
 init
 
-THE_ENV_DIR="$PROJ_DIR/envs/$MYENV"
 env_setup_script="$THE_ENV_DIR/script/setup.shrc"
 
 if [[ -x $env_setup_script ]]; then

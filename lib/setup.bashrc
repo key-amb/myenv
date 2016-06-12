@@ -1,5 +1,6 @@
 BASE_DIR=${BASE_DIR:-$HOME/my/repos/myenv}
 PROJ_DIR=$HOME/.myenv
+THE_ENV_DIR="$PROJ_DIR/envs/$MYENV"
 
 CUSTOM_RC_DIR=""
 case "$SHELL" in
