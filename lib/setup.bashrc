@@ -59,11 +59,10 @@ sync_file() {
     sync_opts="sudo"
   fi
   $sync_opts mkdir -p $dst_dir
-  if $sync_opts diff -u $src $dst; then
-    echo "[info] No diff: $1 to $2"
+  if $sync_opts diff -u -s $src $dst; then
     return
   fi
-  $sync_opts cp $src $dst
+  $sync_opts cp $src $dst && echo "cp $src $dst"
 }
 
 pre_exec_script() {
