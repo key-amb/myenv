@@ -20,8 +20,19 @@ setopt extended_glob
 
 # cd & pushd
 setopt auto_cd    # cd to directory with directory path only
-setopt auto_pushd # pushd when cd
+#setopt auto_pushd # pushd when cd
 setopt pushd_ignore_dups
+
+# cdr
+mkdir -p $HOME/.cache/shell
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+
+zstyle ':completion:*' recent-dirs-insert both
+zstyle ':chpwd:*' recent-dirs-max 500
+zstyle ':chpwd:*' recent-dirs-default true
+zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/shell/chpwd-recent-dirs"
+zstyle ':chpwd:*' recent-dirs-pushd true
 
 # history
 setopt extended_history # record executed time to history
