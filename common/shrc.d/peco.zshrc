@@ -26,7 +26,7 @@ if which peco >/dev/null 2>&1; then
         _dirs+=( $(\find ${repo} -type d -a \! -regex '.*\.git.*') )
       fi
     done
-    local _dir=$(for _d in ${_dirs[@]}; do echo $_d; done | peco | head -n 1)
+    local _dir=$(for _d in ${_dirs[@]}; do echo $_d; done | peco)
     pushd $_dir > /dev/null
     zle clear-screen
   }
