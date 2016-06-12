@@ -5,7 +5,9 @@ set -euo pipefail
 BASE_DIR=$HOME/.myenv
 . $BASE_DIR/lib/package/dpkg.bashrc
 
-install_pkg slack-desktop
+install_pkg \
+  slack-desktop \
+  silversearcher-ag
 
 exit
 
