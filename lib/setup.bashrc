@@ -48,3 +48,10 @@ symlink2() {
   local link=$2
   $LINKER $src $link
 }
+
+pre_exec_script() {
+  [[ -z ${MYENV:-} ]] && return
+  local pre_script="$PROJ_DIR/envs/$MYENV/script/pre-$(basename $0)"
+  [[ ! -x $pre_script ]] && return
+  $pre_script
+}
