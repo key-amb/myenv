@@ -11,18 +11,16 @@ if [[ ! -d $PLENV_ROOT ]]; then
 fi
 
 PATH=$PLENV_ROOT/bin:$PATH
-if echo $PATH | grep $HOME/.plenv/shims >/dev/null 2>&1; then
-  :
-else
+if ! (echo $PATH | grep $HOME/.plenv/shims >/dev/null 2>&1); then
   eval "$(plenv init -)"
 fi
 PATH=$PLENV_ROOT/shims:$PATH
 
-if !(plenv versions | grep $PL_VERSION >/dev/null 2>&1); then
+if ! (plenv versions | grep $PL_VERSION >/dev/null 2>&1); then
   plenv install $PL_VERSION
   plenv global $PL_VERSION
   plenv rehash
-  if !(which cpanm >/dev/null 2>&1); then
+  if ! (which cpanm >/dev/null 2>&1); then
     plenv install-cpanm
     plenv rehash
   fi

@@ -4,9 +4,7 @@
 # plenv
 if [ -d $HOME/.plenv/shims ]; then
   PATH=$HOME/.plenv/bin:$PATH
-  if echo $PATH | grep $HOME/.plenv/shims >/dev/null 2>&1; then
-    :
-  else
+  if ! (echo $PATH | grep $HOME/.plenv/shims >/dev/null 2>&1); then
     eval "$(plenv init -)"
   fi
   PATH=$HOME/.plenv/shims:$PATH
@@ -14,9 +12,7 @@ fi
 # rbenv
 if [ -d $HOME/.rbenv/shims ]; then
   PATH=$HOME/.rbenv/bin:$PATH
-  if echo $PATH | grep $HOME/.rbenv/shims >/dev/null 2>&1; then
-    :
-  else
+  if ! (echo $PATH | grep $HOME/.rbenv/shims >/dev/null 2>&1); then
     eval "$(rbenv init -)"
   fi
   PATH=$HOME/.rbenv/shims:$PATH
@@ -24,9 +20,7 @@ fi
 # pyenv
 if [ -d $HOME/.pyenv/shims ]; then
   PATH=$HOME/.pyenv/bin:$PATH
-  if echo $PATH | grep $HOME/.pyenv/shims >/dev/null 2>&1; then
-    :
-  else
+  if ! (echo $PATH | grep $HOME/.pyenv/shims >/dev/null 2>&1); then
     eval "$(pyenv init -)"
   fi
   PATH=$HOME/.pyenv/shims:$PATH
