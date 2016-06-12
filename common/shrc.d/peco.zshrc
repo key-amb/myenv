@@ -64,4 +64,14 @@ if which peco >/dev/null 2>&1; then
   zle -N peco-find-all
   bindkey '^uc' peco-find
   bindkey '^ua' peco-find-all
+
+  # search cdr history
+  function peco-cdr() {
+    local _dir=$(cdr -l | awk '{ print $2 }' | peco)
+    BUFFER="cd ${_dir}"
+    zle accept-line
+    zle clear-screen
+  }
+  zle -N peco-cdr
+  bindkey '^ur' peco-cdr
 fi
