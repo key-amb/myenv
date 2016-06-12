@@ -2,6 +2,12 @@
 
 set -euo pipefail
 
+script_dir=${0%/*}
+BASE_DIR="$(cd ${script_dir}/..; pwd)"
+. $BASE_DIR/lib/setup.bashrc
+
+pre_exec_script
+
 RB_VERSION=${RUBY_VERSION:-2.3.1}
 RBENV_ROOT=$HOME/.rbenv
 
@@ -36,6 +42,7 @@ B<setup-rbenv.sh> - Script to bootstrap rbenv
 
     setup-rbenv.sh
     RUBY_VERSION=2.3.1 setup-rbenv.sh
+    MYENV=ubuntu-desktop setup-rbenv.sh # Exec pre-hook
 
 =head1 DESCRIPTION
 
