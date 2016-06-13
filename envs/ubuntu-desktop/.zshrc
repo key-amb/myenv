@@ -72,6 +72,9 @@ precmd () {
 }
 RPROMPT="%1(v|%F{magenta}%1v%f%F{green}[%~]%f|%F{green}[%~]%f)"
 
+## custom PATH
+PATH=$PATH:${MYENV_DIR}/common/bin
+
 # remove duplicate PATH
 typeset -U path PATH
 
@@ -85,3 +88,8 @@ fi
 
 # peco
 . $MYENV_DIR/common/shrc.d/peco.zshrc
+
+############################################################
+# scripts to exec on login
+update-local-repos
+

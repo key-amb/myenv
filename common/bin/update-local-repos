@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+PROG=$(basename $0)
+
+if [[ $MYENV ]]; then
+  shrc=$HOME/.myenv/envs/$MYENV/lib/$PROG.bashrc
+  [[ -r $shrc ]] && . $shrc
+fi
+
+TMPD=$HOME/tmp/$PROG
+mkdir -p $TMPD
+
+if [[ -z ${LOCAL_REPOS:-} ]]; then
+  LOCAL_REPOS=($HOME/.myenv)
+fi
+
+for repo in ${LOCAL_REPOS[@]}; do
+  repo_base=$(basename $repo)
+  ymd=$(date +%Y%m%d)
+  tsfile="$TMPD/${repo_base}.$ymd"
+  [[ -e $tsfile ]] && continue
+  cd $repo
+  git pull origin master
+  if [[ -f .gitmodules ]]; then
+    git submodule update --init
+  fi
+  rm -f "$TMPD/${repo_base}.*"
+  touch $tsfile
+done
+
+exit
+
+: <<'__EOF__'
+
+=encoding utf8
+
+=head1 NAME
+
+B<update-local-repos> - Update repositories
+
+=head1 SYNOPSYS
+
+    env MYENV=ubuntu-desktop update-local-repos
+
+=head1 DESCRIPTION
+
+blah blah blah.
+
+=head1 AUTHORS
+
+IKEDA Kiyoshi E<lt>yasutake.kiyoshi@gmail.comE<gt>
+
+=cut
+
+__EOF__
+
