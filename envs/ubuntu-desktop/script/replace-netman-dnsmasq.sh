@@ -52,7 +52,7 @@ L<https://sites.google.com/site/keyambwebtech/home/memorandom/20160612#TOC-Ubunt
 
 =head1 AUTHORS
 
-YASUTAKE Kiyoshi E<lt>yasutake.kiyoshi@gmail.comE<gt>
+IKEDA Kiyoshi E<lt>yasutake.kiyoshi@gmail.comE<gt>
 
 =cut
 
