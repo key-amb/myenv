@@ -8,9 +8,9 @@ BASE_DIR="$(cd ${script_dir}/..; pwd)"
 
 echo "[START] setup $MYENV"
 
-init_proj_dir
+init_shell
 
-env_setup_script="$THE_ENV_DIR/script/setup.shrc"
+env_setup_script="$THE_ENV_DIR/script/setup-shell.shrc"
 
 if [[ -r $env_setup_script ]]; then
   . $env_setup_script
@@ -28,20 +28,19 @@ exit
 
 =head1 NAME
 
-B<setup-env.sh> - Script to set up environments
+B<setup-shellenv.sh> - Script to set up a shell environment
 
 =head1 SYNOPSYS
 
-    MYENV=<target env> script/setup-env.sh
-
-Optional Shell Variables:
-
-    LINKS_FORCE=1 # force replace existing symlinks
-                  # See also: https://github.com/key-amb/bash-links
+    MYENV=<target env> script/setup-shellenv.sh
 
 =head1 DESCRIPTION
 
-This script set up environments.
+This script set up a shell environment for current user.
+
+=head1 SEE ALSO
+
+L<script/setup-env.sh>
 
 =head1 AUTHORS
 
@@ -50,3 +49,4 @@ IKEDA Kiyoshi E<lt>yasutake.kiyoshi@gmail.comE<gt>
 =cut
 
 __EOF__
+

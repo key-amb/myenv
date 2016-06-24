@@ -28,7 +28,7 @@ mk_custom_rc_dir() {
   fi
 }
 
-init() {
+init_shell() {
   init_proj_dir
   mk_custom_rc_dir
 }

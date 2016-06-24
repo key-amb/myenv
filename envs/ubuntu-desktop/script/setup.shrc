@@ -2,35 +2,6 @@
 
 . $BASE_DIR/lib/package/dpkg.bashrc
 
-# Make symlinks of dotfiles
-UD_LINK_TARGETS=(.vimrc .zshenv .zshrc)
-
-for _lt in ${UD_LINK_TARGETS[@]}; do
-  symlink $_lt
-done
-
-unset _lt
-
 # Install packages
 install_pkg git vim zsh tmux tree
-
-# zsh
-if [[ $SHELL != "/bin/zsh" ]]; then
-  if [[ -x /bin/zsh ]]; then
-    sudo chsh -s /bin/zsh $USER
-  else
-    echo "[error] /bin/zsh not executable!"
-    return 1
-  fi
-fi
-
-# dotfiles
-DF_SHELL=/bin/zsh $BASE_DIR/script/setup-dotfiles.sh
-
-# clenv
-if [[ ! -d $HOME/.clenv ]]; then
-  git clone git@github.com:key-amb/clenv.git $HOME/.clenv
-  . $BASE_DIR/common/shrc.d/load_clenv.shrc
-fi
-clam -r $BASE_DIR/common/Clamfile
 
