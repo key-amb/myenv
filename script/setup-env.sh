@@ -12,7 +12,7 @@ init
 
 env_setup_script="$THE_ENV_DIR/script/setup.shrc"
 
-if [[ -x $env_setup_script ]]; then
+if [[ -r $env_setup_script ]]; then
   . $env_setup_script
 else
   echo "No setup script for env: $MYENV"
