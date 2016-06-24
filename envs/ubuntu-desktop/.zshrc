@@ -73,6 +73,7 @@ precmd () {
 RPROMPT="%1(v|%F{magenta}%1v%f%F{green}[%~]%f|%F{green}[%~]%f)"
 
 ## custom PATH
+PATH=.:$PATH
 PATH=$PATH:${MYENV_DIR}/common/bin
 
 # remove duplicate PATH
