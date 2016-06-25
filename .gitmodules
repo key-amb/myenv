@@ -4,3 +4,7 @@
 [submodule "submodule/sh-pathctl"]
 	path = submodule/sh-pathctl
 	url = git@github.com:key-amb/sh-pathctl.git
+[submodule "submodule/enhancd"]
+	path = submodule/enhancd
+	url = git@github.com:key-amb/enhancd.git
+	branch = feature/configure-subcommands
