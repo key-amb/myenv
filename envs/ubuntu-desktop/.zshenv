@@ -1,5 +1,5 @@
 export MYENV=ubuntu-desktop
-MYENV_DIR=$HOME/.myenv
+MYENV_ROOT=$HOME/.myenv
 
 # Change directory color when type 'ls --color'. See man dircolors.
 export LSCOLORS=Exfxcxdxbxegedabagacad

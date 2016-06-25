@@ -1,6 +1,6 @@
 # load common shrc
-. $MYENV_DIR/common/shrc.d/load_apps.shrc
-. $MYENV_DIR/common/shrc.d/aliases
+. $MYENV_ROOT/common/shrc.d/load_apps.shrc
+. $MYENV_ROOT/common/shrc.d/aliases
 
 # Colors
 autoload -U colors
@@ -74,7 +74,7 @@ RPROMPT="%1(v|%F{magenta}%1v%f%F{green}[%~]%f|%F{green}[%~]%f)"
 
 ## custom PATH
 PATH=.:$PATH
-PATH=$PATH:${MYENV_DIR}/common/bin
+PATH=$PATH:${MYENV_ROOT}/common/bin
 
 # remove duplicate PATH
 typeset -U path PATH
@@ -88,7 +88,7 @@ if [ -d $HOME/.zshrc.d ]; then
 fi
 
 # peco
-. $MYENV_DIR/common/shrc.d/peco.zshrc
+. $MYENV_ROOT/common/shrc.d/peco.zshrc
 
 ############################################################
 # scripts to exec on login

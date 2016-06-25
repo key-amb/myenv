@@ -1,5 +1,5 @@
 # clenv
-. $MYENV_DIR/common/shrc.d/load_clenv.shrc
+. $MYENV_ROOT/common/shrc.d/load_clenv.shrc
 
 # plenv
 if [ -d $HOME/.plenv/shims ]; then
