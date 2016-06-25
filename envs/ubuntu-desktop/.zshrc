@@ -87,9 +87,6 @@ if [ -d $HOME/.zshrc.d ]; then
   done
 fi
 
-# peco
-. $MYENV_ROOT/common/shrc.d/peco.zshrc
-
 ############################################################
 # scripts to exec on login
 update-local-repos
