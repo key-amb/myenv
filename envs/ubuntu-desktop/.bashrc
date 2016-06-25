@@ -10,6 +10,15 @@ PATH=$PATH:${MYENV_ROOT}/common/bin
 # remove duplicate PATH
 pathctl_uniq
 
+### enhancd + peco
+if [[ -d $MYENV_ROOT/submodule/enhancd ]]; then
+  ENHANCD_HYPHEN_ARG="-ls"
+  ENHANCD_DOT_ARG="-up"
+  . $MYENV_ROOT/submodule/enhancd/init.sh
+  bind -x '"\C-ur": cd -ls'
+  PECO_CD_CMD=__enhancd::cd
+fi
+
 ############################################################
 # extentional settings
 
