@@ -1,3 +1,6 @@
 [submodule "submodule/bash-links"]
 	path = submodule/bash-links
 	url = git@github.com:key-amb/bash-links.git
+[submodule "submodule/sh-pathctl"]
+	path = submodule/sh-pathctl
+	url = git@github.com:key-amb/sh-pathctl.git
