@@ -4,6 +4,16 @@ set -euo pipefail
 
 PROG=$(basename $0)
 
+FORCE=
+case "${1:-}" in
+  "-f" | "--force" )
+    FORCE=1
+    ;;
+  "" ) ;;
+  * )
+    echo "[info] Option $1 is ignored."
+esac
+
 if [[ $MYENV ]]; then
   shrc=$HOME/.myenv/envs/$MYENV/lib/$PROG.bashrc
   [[ -r $shrc ]] && . $shrc
@@ -20,7 +30,7 @@ for repo in ${LOCAL_REPOS[@]}; do
   repo_base=$(basename $repo)
   ymd=$(date +%Y%m%d)
   tsfile="$TMPD/${repo_base}.$ymd"
-  [[ -e $tsfile ]] && continue
+  [[ -z $FORCE && -e $tsfile ]] && continue
   cd $repo
   git pull origin master
   if [[ -f .gitmodules ]]; then
@@ -42,11 +52,11 @@ B<update-local-repos> - Update repositories
 
 =head1 SYNOPSYS
 
-    env MYENV=ubuntu-desktop update-local-repos
+    env MYENV=ubuntu-desktop update-local-repos [-f|--force]
 
 =head1 DESCRIPTION
 
-blah blah blah.
+Update local repositories configured by C<LOCAL_REPOS> shell variable.
 
 =head1 AUTHORS
 
