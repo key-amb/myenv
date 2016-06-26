@@ -3,7 +3,9 @@
 set -euo pipefail
 
 MYENV=ubuntu-desktop
+ADMIN=${ADMIN:-$USER}
 BASE_DIR=$HOME/.myenv
+
 . $BASE_DIR/lib/setup.bashrc
 . $BASE_DIR/lib/package/dpkg.bashrc
 
@@ -24,11 +26,18 @@ install_docker() {
   install_pkg docker-engine
 }
 
+admin_to_docker_group() {
+  (grep docker /etc/group | grep $ADMIN) &>/dev/null && return
+  sudo usermod -aG docker $ADMIN
+}
+
 if dpkg-query -l docker-engine >/dev/null 2>&1; then
   echo "[info] docker is already installed."
 else
   install_docker
 fi
+
+admin_to_docker_group
 
 src=files/systemd/docker/service.conf
 dst=/etc/systemd/system/docker.service.d/service.conf
