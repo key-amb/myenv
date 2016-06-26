@@ -2,15 +2,15 @@
 
 set -euo pipefail
 
-REPOS_DIR=$HOME/gitrepos
-DF_REPO=$HOME/gitrepos/dotfiles
+base_dir="$(cd $(dirname $0)/..; pwd)"
+. $base_dir/lib/setup.bashrc
+
+DF_REPO=$REPO_BASE/dotfiles
 SETUP_SCRIPTS=(
   setup-all-links.sh
   setup-vim-env.sh
   set-custom-shrc-links.sh
 )
-
-mkdir -p $REPOS_DIR
 
 if [[ ! -d $DF_REPO ]]; then
   git clone git@github.com:key-amb/dotfiles.git $DF_REPO
