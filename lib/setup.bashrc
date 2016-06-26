@@ -1,4 +1,6 @@
-BASE_DIR=${BASE_DIR:-$HOME/my/repos/myenv}
+if [[ -z ${BASE_DIR:-} ]]; then
+  BASE_DIR=$(cd $(dirname $BASH_SOURCE)/.. && pwd)
+fi
 PROJ_DIR=$HOME/.myenv
 THE_ENV_DIR="$PROJ_DIR/envs/$MYENV"
 

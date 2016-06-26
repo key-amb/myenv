@@ -2,9 +2,8 @@
 
 set -euo pipefail
 
-script_dir=${0%/*}
-BASE_DIR="$(cd ${script_dir}/..; pwd)"
-. $BASE_DIR/lib/setup.bashrc
+base_dir="$(cd $(dirname $0)/..; pwd)"
+. $base_dir/lib/setup.bashrc
 
 pre_exec_script
 
