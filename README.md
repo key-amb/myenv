@@ -7,9 +7,9 @@ Personal settings for various environments including dotfiles or bootstrap scrip
 ```bash
 # (1) As login user
 
-mkdir -p ~/my/repo
+mkdir -p ~/my/repos
 git clone git@github.com:key-amb/myenv.git ~/my/repo/myenv
-cd ~/my/repo/myenv
+cd ~/my/repos/myenv
 git submodule update --init
 
 # Create admin user
@@ -17,9 +17,9 @@ script/create-admin-user.sh $ADMIN
 sudo su - $ADMIN
 
 # (2) As admin user
-mkdir -p ~/my/repo
-git clone git@github.com:key-amb/myenv.git ~/my/repo/myenv
-cd ~/my/repo/myenv
+mkdir -p ~/my/repos
+git clone git@github.com:key-amb/myenv.git ~/my/repos/myenv
+cd ~/my/repos/myenv
 git submodule update --init
 
 # Set up an environment
