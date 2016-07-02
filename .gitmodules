@@ -8,3 +8,6 @@
 	path = submodule/enhancd
 	url = git@github.com:key-amb/enhancd.git
 	branch = feature/configure-subcommands
+[submodule "submodule/install-github-go-binary"]
+	path = submodule/install-github-go-binary
+	url = git@github.com:key-amb/bash-install-github-go-binary.git
