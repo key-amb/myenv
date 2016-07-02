@@ -5,3 +5,6 @@
 # Install packages
 install_pkg git vim zsh tmux tree
 
+# Go programs
+$BASE_DIR/script/install-go-binaries.sh
+
