@@ -40,6 +40,13 @@ for repo in ${LOCAL_REPOS[@]}; do
   touch $tsfile
 done
 
+tsfile="$TMPD/clam-modules.$ymd"
+if [[ $FORCE || ! -e $tsfile ]]; then
+  clam -r $HOME/.myenv/common/Clamfile
+  rm -f "$TMPD/clam-modules.*"
+  touch $tsfile
+fi
+
 exit
 
 : <<'__EOF__'
