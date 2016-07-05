@@ -3,7 +3,7 @@
 . $BASE_DIR/lib/package/dpkg.bashrc
 
 # Install packages
-install_pkg git vim zsh tmux tree
+install_pkg git vim zsh tmux tree jq
 
 # Go programs
 $BASE_DIR/script/install-go-binaries.sh
