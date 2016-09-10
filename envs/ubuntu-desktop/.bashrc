@@ -14,6 +14,7 @@ pathctl_uniq
 if [[ -d $MYENV_ROOT/submodule/enhancd ]]; then
   ENHANCD_HYPHEN_ARG="-ls"
   ENHANCD_DOT_ARG="-up"
+  ENHANCD_DISABLE_HOME=1
   . $MYENV_ROOT/submodule/enhancd/init.sh
   bind -x '"\C-ur": cd -ls'
   PECO_CD_CMD=__enhancd::cd
