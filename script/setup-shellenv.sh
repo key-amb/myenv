@@ -9,6 +9,9 @@ echo "[START] setup $MYENV"
 
 init_shell
 
+# symlink common/*
+$LINKER $PROJ_DIR/common/.gemrc $HOME/.gemrc
+
 env_setup_script="$THE_ENV_DIR/script/setup-shell.shrc"
 
 if [[ -r $env_setup_script ]]; then
