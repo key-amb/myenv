@@ -73,8 +73,8 @@ precmd () {
 RPROMPT="%1(v|%F{magenta}%1v%f%F{green}[%~]%f|%F{green}[%~]%f)"
 
 ## custom PATH
-PATH=.:$PATH
-PATH=$PATH:${MYENV_ROOT}/common/bin
+PATH=".:$HOME/bin:$PATH"
+PATH="$PATH:${MYENV_ROOT}/common/bin"
 
 # remove duplicate PATH
 typeset -U path PATH
@@ -91,3 +91,6 @@ fi
 # scripts to exec on login
 update-local-repos
 
+
+# added by travis gem
+[ -f /home/quiche/.travis/travis.sh ] && source /home/quiche/.travis/travis.sh

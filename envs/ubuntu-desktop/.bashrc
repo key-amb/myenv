@@ -4,8 +4,8 @@
 . $MYENV_ROOT/submodule/sh-pathctl/pathctl.shrc
 
 ## custom PATH
-PATH=.:$PATH
-PATH=$PATH:${MYENV_ROOT}/common/bin
+PATH=".:$HOME/bin:$PATH"
+PATH="$PATH:${MYENV_ROOT}/common/bin"
 
 # remove duplicate PATH
 pathctl_uniq

@@ -33,6 +33,7 @@ mk_custom_rc_dir() {
 
 init_shell() {
   init_proj_dir
+  mkdir -p "$HOME/bin"
   mk_custom_rc_dir
 }
 
