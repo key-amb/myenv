@@ -1,13 +1,8 @@
 # clenv
-if [ -d $HOME/.clenv ]; then
-  PATH=$HOME/.clenv/bin:$PATH
-  PATH=$HOME/.clenv/shims:$PATH
-  export CLENV_ROOT=$HOME/.clenv
-  . $CLENV_ROOT/shrc.d/clenv.shrc
-  if [ -z $CLENV_ENVIRONMENT ]; then
-    if [ ! -d $CLENV_ROOT/environments/default ]; then
-      clenv init-env default
-    fi
-    clenv_use default
+if [[ -d "$HOME/.clenv" ]]; then
+  PATH="$HOME/.clenv/bin:$PATH"
+  export CLENV_ROOT="$HOME/.clenv"
+  if ! (echo "$PATH" | grep "$HOME/.clenv/shims" &>/dev/null); then
+    eval "$(clenv init -)"
   fi
 fi
