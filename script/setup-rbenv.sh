@@ -22,7 +22,7 @@ fi
 PATH=$RBENV_ROOT/shims:$PATH
 
 if ! (rbenv versions | grep $RB_VERSION >/dev/null 2>&1); then
-  rbenv install $RB_VERSION
+  rbenv install $RB_VERSION -v
   rbenv global $RB_VERSION
   rbenv rehash
 fi
