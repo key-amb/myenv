@@ -3,8 +3,7 @@
 . $BASE_DIR/lib/package/rhel.bashrc
 
 # Install packages
-install_pkg git vim tmux tree wget
+install_pkg git vim tmux tree wget bzip2 gcc gcc-c++
 
 # Go programs
 $BASE_DIR/script/install-go-binaries.sh
-
