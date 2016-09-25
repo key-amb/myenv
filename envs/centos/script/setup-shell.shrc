@@ -10,12 +10,6 @@ setup_symlinks() {
   done
 }
 
-setup_dotfiles() {
-  local df_shell=
-  [[ $SETUP_SHELL = "zsh" ]] && df_shell=/bin/zsh
-  DF_SHELL=${df_shell} $BASE_DIR/script/setup-dotfiles.sh
-}
-
 setup_clenv() {
   if [[ ! -d $HOME/.clenv ]]; then
     git clone git@github.com:key-amb/clenv.git $HOME/.clenv
@@ -26,5 +20,7 @@ setup_clenv() {
 
 ## MAIN ENTRY
 setup_symlinks
-setup_dotfiles
+
+$BASE_DIR/script/setup-dotfiles.sh
+
 setup_clenv
