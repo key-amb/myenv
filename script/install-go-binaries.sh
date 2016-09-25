@@ -6,8 +6,8 @@ base_dir="$(cd $(dirname $0)/..; pwd)"
 . $base_dir/lib/setup.bashrc
 
 GO_PACKAGES=(
-  "peco:0.3.6"
-  "hub:2.2.3"
+  "peco:0.4.2"
+  "hub:2.2.8"
 )
 
 cd $BASE_DIR/submodule/install-github-go-binary
