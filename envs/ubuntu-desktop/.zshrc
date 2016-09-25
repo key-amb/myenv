@@ -90,7 +90,3 @@ fi
 ############################################################
 # scripts to exec on login
 update-local-repos
-
-
-# added by travis gem
-[ -f /home/quiche/.travis/travis.sh ] && source /home/quiche/.travis/travis.sh

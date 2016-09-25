@@ -40,4 +40,3 @@ unset __git_completion
 ############################################################
 # scripts to exec on login
 update-local-repos
-
