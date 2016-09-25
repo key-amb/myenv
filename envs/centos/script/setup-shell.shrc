@@ -1,30 +1,7 @@
 # bash
 
-# Assumptions:
-#  - SETUP_SHELL to be "bash" or "zsh"
-#  - Default SHELL to be "bash"
-
-SETUP_SHELL=${SETUP_SHELL:-zsh}
-
 # Make symlinks of dotfiles
-UD_LINK_TARGETS=()
-
-common_setup() {
-  setup_symlinks
-  setup_dotfiles
-  setup_clenv
-}
-
-chsh_zsh() {
-  if [[ $SHELL != "/bin/zsh" ]]; then
-    if [[ -x /bin/zsh ]]; then
-      sudo chsh -s /bin/zsh $USER
-    else
-      echo "[error] /bin/zsh not executable!"
-      return 1
-    fi
-  fi
-}
+UD_LINK_TARGETS=(.bash_profile .bashrc)
 
 setup_symlinks() {
   local _lt
@@ -47,19 +24,7 @@ setup_clenv() {
   clam -r $BASE_DIR/common/Clamfile
 }
 
-case "$SETUP_SHELL" in
-  "bash" )
-    UD_LINK_TARGETS+=(.bash_profile .bashrc)
-    common_setup
-    ;;
-  "zsh"  )
-    UD_LINK_TARGETS+=(.zshenv .zshrc)
-    chsh_zsh
-    common_setup
-    ;;
-  * )
-    echo "[error] Unexpected shell!! $SETUP_SHELL" >&2
-    return 1
-    ;;
-esac
-
+## MAIN ENTRY
+setup_symlinks
+setup_dotfiles
+setup_clenv
