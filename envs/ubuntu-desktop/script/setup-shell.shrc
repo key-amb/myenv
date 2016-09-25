@@ -7,7 +7,7 @@
 SETUP_SHELL=${SETUP_SHELL:-zsh}
 
 # Make symlinks of dotfiles
-UD_LINK_TARGETS=(.vimrc)
+UD_LINK_TARGETS=()
 
 common_setup() {
   setup_symlinks
