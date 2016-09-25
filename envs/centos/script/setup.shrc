@@ -1,0 +1,10 @@
+# bash
+
+. $BASE_DIR/lib/package/rhel.bashrc
+
+# Install packages
+install_pkg git vim tmux tree
+
+# Go programs
+$BASE_DIR/script/install-go-binaries.sh
+
