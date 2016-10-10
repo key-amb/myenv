@@ -4,7 +4,7 @@
 
 # Install packages
 install_pkg \
-  git vim tmux tree wget \
+  git vim tmux tree wget bind-utils \
   bzip2 gcc gcc-c++ openssl-devel readline-devel zlib-devel
 
 # Go programs
