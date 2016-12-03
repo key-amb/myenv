@@ -7,7 +7,7 @@ base_dir="$(cd $(dirname $0)/..; pwd)"
 
 pre_exec_script
 
-RB_VERSION=${RUBY_VERSION:-2.3.1}
+RB_VERSION=${RUBY_VERSION:-2.3.3}
 RBENV_ROOT=$HOME/.rbenv
 
 if [[ ! -d $RBENV_ROOT ]]; then
