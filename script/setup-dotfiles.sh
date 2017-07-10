@@ -13,7 +13,7 @@ SETUP_SCRIPTS=(
 )
 
 if [[ ! -d $DF_REPO ]]; then
-  git clone git@github.com:key-amb/dotfiles.git $DF_REPO
+  git clone git@github.com:progrhyme/dotfiles.git $DF_REPO
 fi
 
 cd $DF_REPO

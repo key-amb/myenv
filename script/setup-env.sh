@@ -36,7 +36,7 @@ B<setup-env.sh> - Script to set up environments
 Optional Shell Variables:
 
     LINKS_FORCE=1 # force replace existing symlinks
-                  # See also: https://github.com/key-amb/bash-links
+                  # See also: https://github.com/progrhyme/bash-links
 
 =head1 DESCRIPTION
 

@@ -41,7 +41,7 @@ setup_dotfiles() {
 
 setup_clenv() {
   if [[ ! -d $HOME/.clenv ]]; then
-    git clone git@github.com:key-amb/clenv.git $HOME/.clenv
+    git clone git@github.com:progrhyme/clenv.git $HOME/.clenv
     . $BASE_DIR/common/shrc.d/load_clenv.shrc
   fi
   clam -r $BASE_DIR/common/Clamfile

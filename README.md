@@ -8,7 +8,7 @@ Personal settings for various environments including dotfiles or bootstrap scrip
 # (1) As login user
 
 mkdir -p ~/my/repos
-git clone git@github.com:key-amb/myenv.git ~/my/repo/myenv
+git clone git@github.com:progrhyme/myenv.git ~/my/repo/myenv
 cd ~/my/repos/myenv
 git submodule update --init
 
@@ -18,7 +18,7 @@ sudo su - $ADMIN
 
 # (2) As admin user
 mkdir -p ~/my/repos
-git clone git@github.com:key-amb/myenv.git ~/my/repos/myenv
+git clone git@github.com:progrhyme/myenv.git ~/my/repos/myenv
 cd ~/my/repos/myenv
 git submodule update --init
 
