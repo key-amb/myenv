@@ -1,12 +1,12 @@
 [submodule "submodule/bash-links"]
 	path = submodule/bash-links
-	url = git@github.com:key-amb/bash-links.git
+	url = git@github.com:progrhyme/bash-links.git
 [submodule "submodule/sh-pathctl"]
 	path = submodule/sh-pathctl
-	url = git@github.com:key-amb/sh-pathctl.git
+	url = git@github.com:progrhyme/sh-pathctl.git
 [submodule "submodule/enhancd"]
 	path = submodule/enhancd
 	url = git@github.com:b4b4r07/enhancd.git
 [submodule "submodule/install-github-go-binary"]
 	path = submodule/install-github-go-binary
-	url = git@github.com:key-amb/bash-install-github-go-binary.git
+	url = git@github.com:progrhyme/bash-install-github-go-binary.git
