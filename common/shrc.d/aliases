@@ -1,4 +1,8 @@
-alias ls='ls --show-control-chars --color=auto'
+if [[ "${OSTYPE}" =~ ^darwin* ]]; then
+  alias ls='ls -G'
+else
+  alias ls='ls --show-control-chars --color=auto'
+fi
 alias ll='ls -lF'
 alias la='ls -a'
 
