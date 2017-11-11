@@ -89,6 +89,4 @@ fi
 
 ############################################################
 # scripts to exec on login
-
-# TODO: temporary not working
-#update-local-repos
+update-local-repos

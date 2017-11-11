@@ -39,5 +39,4 @@ unset __git_completion
 
 ############################################################
 # scripts to exec on login
-# Temporarily disable
-#update-local-repos
+update-local-repos
