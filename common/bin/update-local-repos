@@ -14,13 +14,14 @@ case "${1:-}" in
     echo "[info] Option $1 is ignored."
 esac
 
+TMPD=$HOME/tmp/$PROG
+mkdir -p $TMPD
+YMD=$(date +%Y%m%d)
+
 if [[ $MYENV ]]; then
   shrc=$HOME/.myenv/envs/$MYENV/lib/$PROG.bashrc
   [[ -r $shrc ]] && . $shrc
 fi
-
-TMPD=$HOME/tmp/$PROG
-mkdir -p $TMPD
 
 if [[ -z ${LOCAL_REPOS:-} ]]; then
   LOCAL_REPOS=($HOME/.myenv)
@@ -28,8 +29,7 @@ fi
 
 for repo in ${LOCAL_REPOS[@]}; do
   repo_base=$(basename $repo)
-  ymd=$(date +%Y%m%d)
-  tsfile="$TMPD/${repo_base}.$ymd"
+  tsfile="$TMPD/${repo_base}.$YMD"
   [[ -z $FORCE && -e $tsfile ]] && continue
   cd $repo
   git pull origin master
@@ -40,7 +40,7 @@ for repo in ${LOCAL_REPOS[@]}; do
   touch $tsfile
 done
 
-tsfile="$TMPD/clam-modules.$ymd"
+tsfile="$TMPD/clam-modules.$YMD"
 if [[ $FORCE || ! -e $tsfile ]]; then
   clam -r $HOME/.myenv/common/Clamfile
   rm -f "$TMPD/clam-modules.*"
