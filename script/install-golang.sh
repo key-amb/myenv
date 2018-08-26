@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-GO_VERSION=1.6.2
+GO_VERSION=1.11
 OS=${OS:-linux}
 ARCH=${ARCH:-amd64}
 GOROOT=${GOROOT:-"/usr/local/go"} # last dir must be "go"
