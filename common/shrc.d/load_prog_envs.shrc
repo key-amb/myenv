@@ -40,6 +40,9 @@ fi
 # go
 __goroot=${GOROOT:-"/usr/local/go"}
 if [[ -d $__goroot ]]; then
-  export PATH=$PATH:${__goroot}/bin
+  PATH=$PATH:${__goroot}/bin
+fi
+if [[ -d $HOME/go ]]; then
+  PATH=$HOME/go/bin:$PATH
 fi
 unset __goroot
