@@ -8,7 +8,8 @@ BASE_DIR=$HOME/.myenv
 install_pkg \
   slack-desktop \
   silversearcher-ag \
-  memcached
+  memcached \
+  curl
 
 exit
 
