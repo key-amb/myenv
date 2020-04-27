@@ -2,6 +2,7 @@ LOCAL_REPOS=(
   $HOME/dotfiles
   $HOME/.myenv
   $HOME/.clenv
+  $HOME/my/repos/tech-notes
 )
 
 check_brew_update() {
