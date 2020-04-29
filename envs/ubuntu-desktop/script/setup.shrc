@@ -5,3 +5,10 @@
 # Install packages
 install_pkg git vim zsh tmux tree jq mysql-client direnv
 
+# Install Homebrew
+# See https://brew.sh/
+if [[ ! -d /home/linuxbrew/.linuxbrew ]]; then
+  /bin/bash -c \
+    "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+fi
+
