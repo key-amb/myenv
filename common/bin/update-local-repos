@@ -30,7 +30,15 @@ fi
 for repo in ${LOCAL_REPOS[@]}; do
   repo_base=$(basename $repo)
   tsfile="$TMPD/${repo_base}.$YMD"
+
   [[ -z $FORCE && -e $tsfile ]] && continue
+
+  if [[ ! -d $repo ]]; then
+    echo "[NOTICE] Not exist $repo. Skips." >&2
+    touch $tsfile
+    continue
+  fi
+
   cd $repo
   git pull origin master
   if [[ -f .gitmodules ]]; then
