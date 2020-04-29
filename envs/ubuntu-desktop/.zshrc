@@ -1,5 +1,6 @@
 # load common shrc
 . $MYENV_ROOT/common/shrc.d/load_apps.shrc
+. $MYENV_ROOT/common/shrc.d/load_linuxbrew.shrc
 . $MYENV_ROOT/common/shrc.d/aliases
 
 # Colors
