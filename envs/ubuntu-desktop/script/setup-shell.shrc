@@ -7,7 +7,7 @@
 SETUP_SHELL=${SETUP_SHELL:-zsh}
 
 # Make symlinks of dotfiles
-UD_LINK_TARGETS=()
+UD_LINK_TARGETS=(.Brewfile)
 
 #-----------
 # Functions
@@ -68,9 +68,4 @@ case "$SETUP_SHELL" in
     return 1
     ;;
 esac
-
-# for Homebrew Brewfile
-. $THE_ENV_DIR/shrc.d/linuxbrew.shrc
-mkdir -p ${HOMEBREW_BUNDLE_FILE%/*}
-symlink2 Brewfile $HOMEBREW_BUNDLE_FILE
 
