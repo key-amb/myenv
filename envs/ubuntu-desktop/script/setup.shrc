@@ -4,6 +4,7 @@
 
 # Install packages
 install_pkg \
+  build-essential gcc \
   git vim zsh tmux tree \
   jq mysql-client direnv \
   peco curl
