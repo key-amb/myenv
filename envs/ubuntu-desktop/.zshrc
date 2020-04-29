@@ -94,3 +94,4 @@ eval "$(direnv hook zsh)"
 ############################################################
 # scripts to exec on login
 update-local-repos
+
