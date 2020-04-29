@@ -10,6 +10,8 @@ echo "[START] setup $MYENV"
 init_shell
 
 # symlink common/*
+mkdir -p $HOME/.config/git
+$LINKER $BASE_DIR/common/.config/git/ignore $HOME/.config/git/ignore
 $LINKER $PROJ_DIR/common/.gemrc $HOME/.gemrc
 
 env_setup_script="$THE_ENV_DIR/script/setup-shell.shrc"
