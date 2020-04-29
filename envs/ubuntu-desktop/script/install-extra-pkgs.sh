@@ -7,9 +7,7 @@ BASE_DIR=$HOME/.myenv
 
 install_pkg \
   silversearcher-ag \
-  memcached \
-  curl \
-  peco
+  memcached
 
 exit
 

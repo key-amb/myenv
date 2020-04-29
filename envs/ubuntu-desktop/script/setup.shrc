@@ -3,7 +3,10 @@
 . $BASE_DIR/lib/package/dpkg.bashrc
 
 # Install packages
-install_pkg git vim zsh tmux tree jq mysql-client direnv
+install_pkg \
+  git vim zsh tmux tree \
+  jq mysql-client direnv \
+  peco curl
 
 # Install Homebrew
 # See https://brew.sh/
