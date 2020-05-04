@@ -1,2 +1,3 @@
 brew "tfenv"
+brew "kubectx"
 
