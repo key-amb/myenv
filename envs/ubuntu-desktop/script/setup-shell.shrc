@@ -2,7 +2,7 @@
 
 # Assumptions:
 #  - SETUP_SHELL to be "bash" or "zsh"
-#  - Default SHELL to be "bash"
+#  - Default SHELL to be "zsh"
 
 SETUP_SHELL=${SETUP_SHELL:-zsh}
 

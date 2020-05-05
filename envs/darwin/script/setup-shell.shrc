@@ -2,12 +2,12 @@
 
 # Assumptions:
 #  - SETUP_SHELL to be "bash" or "zsh"
-#  - Default SHELL to be "bash"
+#  - Default SHELL to be "zsh"
 
 SETUP_SHELL=${SETUP_SHELL:-zsh}
 
 # Make symlinks of dotfiles
-UD_LINK_TARGETS=()
+UD_LINK_TARGETS=(.Brewfile)
 
 common_setup() {
   setup_symlinks
@@ -47,6 +47,9 @@ setup_clenv() {
   fi
   clam -r $BASE_DIR/common/Clamfile
 }
+
+#-------------
+# Entry Point
 
 case "$SETUP_SHELL" in
   "bash" )

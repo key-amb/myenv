@@ -1,7 +1,4 @@
 # bash
 
-. $BASE_DIR/lib/package/darwin.bashrc
-
-# Install packages
-install_pkg git vim zsh bash tmux tree jq the_silver_searcher
+brew bundle install --file $THE_ENV_DIR/.Brewfile
 

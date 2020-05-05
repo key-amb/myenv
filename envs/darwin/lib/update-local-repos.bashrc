@@ -15,6 +15,8 @@ check_brew_update() {
   if [[ $FORCE || ! -e $tsfile ]]; then
     brew update
     brew outdated
+    brew bundle check --global
+    brew bundle cleanup --global
     rm -f "$TMPD/Homebrew.*"
     touch $tsfile
   fi
