@@ -40,7 +40,7 @@ blah blah blah.
 
 =head1 AUTHORS
 
-IKEDA Kiyoshi E<lt>yasutake.kiyoshi@gmail.comE<gt>
+IKEDA Kiyoshi E<lt>progrhyme@gmail.comE<gt>
 
 =head1 LICENSE
 
