@@ -23,4 +23,6 @@ check_brew_update() {
   rm $tmpfile
 }
 
-check_brew_update
+if [[ -n "${HOMEBREW_PREFIX:-}" ]]; then
+  check_brew_update
+fi
