@@ -11,9 +11,17 @@ if [[ -z "$HUGO_OPTIONS" ]]; then
 fi
 HUGO_OPTIONS+=(--port $HUGO_PORT)
 
-if ss -nlt | grep "\b${HUGO_PORT}\b" &>/dev/null; then
-  echo "[info] localhost:$HUGO_PORT is already in use. Do nothing."
+exit_on_hugo_port_use() {
+  echo "[notice] localhost:$HUGO_PORT is already in use. Do nothing."
   exit 0
+}
+
+if command -v ss &>/dev/null; then
+  if ss -nlt | grep "\b${HUGO_PORT}\b" &>/dev/null; then
+    exit_on_hugo_port_use
+  fi
+elif netstat -an | grep LISTEN | grep "\b${HUGO_PORT}\b" &>/dev/null; then
+  exit_on_hugo_port_use
 fi
 
 cd $TECH_NOTES_DIR
