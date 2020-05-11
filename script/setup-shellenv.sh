@@ -22,6 +22,8 @@ else
   echo "No setup script for env: $MYENV"
 fi
 
+mkdir -p $HOME/.init.d
+
 echo "[END] setup $MYENV"
 
 exit

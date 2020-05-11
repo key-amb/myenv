@@ -82,7 +82,7 @@ typeset -U path PATH
 
 ############################################################
 # extentional settings
-if [ -d $HOME/.zshrc.d ]; then
+if [[ -d $HOME/.zshrc.d ]]; then
   for file in `find $HOME/.zshrc.d -mindepth 1`; do
     source $file
   done
@@ -95,3 +95,13 @@ eval "$(direnv hook zsh)"
 # scripts to exec on login
 update-local-repos
 
+if [[ -d $HOME/.init.d ]]; then
+  for _script in `find $HOME/.init.d -mindepth 1`; do
+    if [[ -x $_script ]]; then
+      echo "Run -- ${_script}"
+      $_script
+    else
+      echo "ERROR! ${_script} is not executable!"
+    fi
+  done
+fi
