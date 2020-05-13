@@ -94,7 +94,7 @@ precmd () {
   if [[ -n "$vcs_info_msg_0_" ]]; then
     RPROMPT="%F{magenta}${vcs_info_msg_0_}%f${RPROMPT}"
   fi
-  if [[ -n "$__KUBECTL_PROMPT__" ]]; then
+  if [[ -n "${__KUBECTL_PROMPT__:-}" ]]; then
     RPROMPT="${RPROMPT}%F{blue}<${ZSH_KUBECTL_PROMPT}>%f"
   fi
 }
