@@ -47,19 +47,17 @@ setopt prompt_subst
 #tmp_prompt="%{${fg[cyan]}%}%n%# %{${reset_color}%}"
 tmp_prompt="%{${fg[cyan]}%}%# %{${reset_color}%}"
 tmp_prompt2="%{${fg[cyan]}%}%_> %{${reset_color}%}"
-tmp_rprompt="%{${fg[green]}%}[%~]%{${reset_color}%}"
 tmp_sprompt="%{${fg[yellow]}%}%r is correct? [Yes, No, Abort, Edit]:%{${reset_color}%}"
 
 PROMPT=$tmp_prompt
 PROMPT2=$tmp_prompt2
-RPROMPT=$tmp_rprompt
 SPROMPT=$tmp_sprompt
 
 [[ -n "${REMOTEHOST}${SSH_CONNECTION}" ]] &&
   PROMPT="%{${fg[white]}%}${HOST%%.*} ${PROMPT}"
 ;
 
-unset tmp_prompt tmp_prompt2 tmp_rprompt tmp_sprompt
+unset tmp_prompt tmp_prompt2 tmp_sprompt
 
 # vcs info
 autoload -Uz vcs_info
@@ -68,12 +66,38 @@ zstyle ':vcs_info:*' stagedstr '+'
 zstyle ':vcs_info:*' unstagedstr '*'
 zstyle ':vcs_info:*' formats '(%u%c%b)'
 zstyle ':vcs_info:*' actionformats '(%u%c%b|%a)'
+
+# kubectl ctx/ns
+__zsh_kubectl_prompt="/usr/local/etc/zsh-kubectl-prompt/kubectl.zsh"
+if [[ -r $__zsh_kubectl_prompt && -z "${ZSH_KUBECTL_PROMPT:-}" ]]; then
+  source $__zsh_kubectl_prompt
+
+  if [[ ! -v __KUBECTL_PROMPT__ ]]; then
+    echo "Show Kubernetes context/namespace on prompt."
+    echo "Exec \"toggle_kubectl_prompt\" to hide/unhide."
+    __KUBECTL_PROMPT__=1
+  fi
+
+  toggle_kubectl_prompt() {
+    if [[ -n "${__KUBECTL_PROMPT__:-}" ]]; then
+      __KUBECTL_PROMPT__=
+    else
+      __KUBECTL_PROMPT__=1
+    fi
+  }
+fi
+unset __zsh_kubectl_prompt
+
 precmd () {
-    psvar=()
-    LANG=en_US.UTF-8 vcs_info
-    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+  LANG=en_US.UTF-8 vcs_info
+  RPROMPT="%F{green}[%~]%f"
+  if [[ -n "$vcs_info_msg_0_" ]]; then
+    RPROMPT="%F{magenta}${vcs_info_msg_0_}%f${RPROMPT}"
+  fi
+  if [[ -n "$__KUBECTL_PROMPT__" ]]; then
+    RPROMPT="${RPROMPT}%F{blue}<${ZSH_KUBECTL_PROMPT}>%f"
+  fi
 }
-RPROMPT="%1(v|%F{magenta}%1v%f%F{green}[%~]%f|%F{green}[%~]%f)"
 
 ## custom PATH
 PATH=".:$HOME/bin:$PATH"
