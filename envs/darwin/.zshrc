@@ -55,7 +55,7 @@ PROMPT2=$tmp_prompt2
 RPROMPT=$tmp_rprompt
 SPROMPT=$tmp_sprompt
 
-[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
+[[ -n "${REMOTEHOST}${SSH_CONNECTION}" ]] &&
   PROMPT="%{${fg[white]}%}${HOST%%.*} ${PROMPT}"
 ;
 
@@ -63,8 +63,11 @@ unset tmp_prompt tmp_prompt2 tmp_rprompt tmp_sprompt
 
 # vcs info
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' formats '(%s)-[%b]'
-zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:*' stagedstr '+'
+zstyle ':vcs_info:*' unstagedstr '*'
+zstyle ':vcs_info:*' formats '(%u%c%b)'
+zstyle ':vcs_info:*' actionformats '(%u%c%b|%a)'
 precmd () {
     psvar=()
     LANG=en_US.UTF-8 vcs_info
