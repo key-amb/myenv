@@ -5,14 +5,14 @@ set -euo pipefail
 base_dir="$(cd $(dirname $0)/..; pwd)"
 . $base_dir/lib/setup.bashrc
 
-DF_REPO=$REPO_BASE/dotfiles
+DF_REPO=$REPO_BASE/.dotfiles
 SETUP_SCRIPTS=(
   setup-all-links.sh
   setup-vim-env.sh
   set-custom-shrc-links.sh
 )
 
-if [[ ! -d $DF_REPO ]]; then
+if [[ ! -e $DF_REPO ]]; then
   git clone git@github.com:progrhyme/dotfiles.git $DF_REPO
 fi
 
