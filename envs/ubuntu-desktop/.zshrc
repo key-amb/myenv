@@ -42,33 +42,51 @@ setopt hist_save_nodups
 setopt hist_ignore_space
 setopt hist_reduce_blanks
 
-## prompt
+## custom PATH
+PATH=".:$HOME/bin:$PATH"
+PATH="$PATH:${MYENV_ROOT}/common/bin"
+
+# PROMPT settings (1)
 setopt prompt_subst
 
-#tmp_prompt="%{${fg[cyan]}%}%n%# %{${reset_color}%}"
-tmp_prompt="%{${fg[cyan]}%}%# %{${reset_color}%}"
+# oh-my-zsh
+plugins=(
+  shrink-path
+  zsh-autosuggestions
+)
+source $ZSH/oh-my-zsh.sh
+## unset vars set by oh-my-zsh
+unset PAGER LESS
+
+# oh-my-zsh theme/plugin configs
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=green,bold"
+
+## overwrite build_prompt() from agnoster.zsh-theme
+build_prompt() {
+  RETVAL=$?
+  prompt_status
+  prompt_segment blue $CURRENT_FG $(shrink_path -f)
+  prompt_git
+  prompt_end
+}
+
+#===========================================================
+# PROMPT settings (2)
+## derives from agnoster.zsh-theme
+PROMPT='%{%f%b%k%}$(build_prompt) '
+
 tmp_prompt2="%{${fg[cyan]}%}%_> %{${reset_color}%}"
 tmp_sprompt="%{${fg[yellow]}%}%r is correct? [Yes, No, Abort, Edit]:%{${reset_color}%}"
 
-PROMPT=$tmp_prompt
 PROMPT2=$tmp_prompt2
 SPROMPT=$tmp_sprompt
 
-[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
+[[ -n "${REMOTEHOST}${SSH_CONNECTION}" ]] &&
   PROMPT="%{${fg[white]}%}${HOST%%.*} ${PROMPT}"
-;
 
-unset tmp_prompt tmp_prompt2 tmp_sprompt
+unset tmp_prompt2 tmp_sprompt
 
-# vcs info
-autoload -Uz vcs_info
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:*' stagedstr '+'
-zstyle ':vcs_info:*' unstagedstr '*'
-zstyle ':vcs_info:*' formats '(%u%c%b)'
-zstyle ':vcs_info:*' actionformats '(%u%c%b|%a)'
-
-# kubectl ctx/ns
+## kubectl ctx/ns
 __zsh_kubectl_prompt="${HOMEBREW_PREFIX:-}/etc/zsh-kubectl-prompt/kubectl.zsh"
 if [[ -r $__zsh_kubectl_prompt && -z "${ZSH_KUBECTL_PROMPT:-}" ]]; then
   source $__zsh_kubectl_prompt
@@ -90,21 +108,14 @@ fi
 unset __zsh_kubectl_prompt
 
 precmd () {
-  psvar=()
-  LANG=en_US.UTF-8 vcs_info
-
-  RPROMPT="%F{green}[%~]%f"
-  if [[ -n "$vcs_info_msg_0_" ]]; then
-    RPROMPT="%F{magenta}${vcs_info_msg_0_}%f${RPROMPT}"
-  fi
   if [[ -n "${__KUBECTL_PROMPT__:-}" ]]; then
-    RPROMPT="${RPROMPT}%F{blue}<${ZSH_KUBECTL_PROMPT}>%f"
+    RPROMPT="%F{blue}<${ZSH_KUBECTL_PROMPT}>%f"
+  else
+    RPROMPT=""
   fi
 }
-
-## custom PATH
-PATH=".:$HOME/bin:$PATH"
-PATH="$PATH:${MYENV_ROOT}/common/bin"
+# /PROMPT settings (2)
+#===========================================================
 
 # remove duplicate PATH
 typeset -U path PATH
