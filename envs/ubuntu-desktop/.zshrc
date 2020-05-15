@@ -74,8 +74,8 @@ if [[ -r $__zsh_kubectl_prompt && -z "${ZSH_KUBECTL_PROMPT:-}" ]]; then
   source $__zsh_kubectl_prompt
 
   if [[ ! -v __KUBECTL_PROMPT__ ]]; then
-    echo "Show Kubernetes context/namespace on prompt."
-    echo "Exec \"toggle_kubectl_prompt\" to hide/unhide."
+    echo "Execute \e[1mtoggle_kubectl_prompt\e[0m to show/hide Kubernetes" \
+      "context/namespace on prompt,"
     __KUBECTL_PROMPT__=1
   fi
 
@@ -127,10 +127,10 @@ update-local-repos
 if [[ -d $HOME/.init.d ]]; then
   for _script in `find $HOME/.init.d -mindepth 1`; do
     if [[ -x $_script ]]; then
-      echo "Run -- ${_script}"
+      echo "\e[32mRun -- ${_script}\e[0m"
       $_script
     else
-      echo "ERROR! ${_script} is not executable!"
+      echo "\e[31mERROR! ${_script} is not executable!\e[0m"
     fi
   done
 fi
