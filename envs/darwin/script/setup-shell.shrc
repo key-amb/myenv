@@ -15,6 +15,7 @@ common_setup() {
   # Defined in $BASE_DIR/lib/setup.bashrc
   setup_dotfiles
   setup_clenv
+  setup_ohmyzsh
 }
 
 setup_symlinks() {
