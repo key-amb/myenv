@@ -60,19 +60,8 @@ unset PAGER LESS
 # oh-my-zsh theme/plugin configs
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=green,bold"
 
-## overwrite build_prompt() from agnoster.zsh-theme
-build_prompt() {
-  RETVAL=$?
-  prompt_status
-  prompt_segment blue $CURRENT_FG $(shrink_path -f)
-  prompt_git
-  prompt_end
-}
-
 #===========================================================
 # PROMPT settings (2)
-## derives from agnoster.zsh-theme
-PROMPT='%{%f%b%k%}$(build_prompt) '
 
 tmp_prompt2="%{${fg[cyan]}%}%_> %{${reset_color}%}"
 tmp_sprompt="%{${fg[yellow]}%}%r is correct? [Yes, No, Abort, Edit]:%{${reset_color}%}"
@@ -124,6 +113,26 @@ if [[ -d $HOME/.zshrc.d ]]; then
     source $file
   done
 fi
+
+# PROMPT settings (3)
+## overwrite build_prompt() from agnoster.zsh-theme
+if [[ -n "${ITERM2_SHOULD_DECORATE_PROMPT:-}" ]]; then
+  build_prompt() {
+    RETVAL=$?
+    prompt_segment blue $CURRENT_FG $(shrink_path -f)
+    prompt_git
+    prompt_end
+  }
+else
+  build_prompt() {
+    RETVAL=$?
+    prompt_status
+    prompt_segment blue $CURRENT_FG $(shrink_path -f)
+    prompt_git
+    prompt_end
+  }
+fi
+PROMPT='%{%f%b%k%}$(build_prompt) '
 
 ############################################################
 # scripts to exec on login
