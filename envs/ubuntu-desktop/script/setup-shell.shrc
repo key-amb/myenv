@@ -14,65 +14,17 @@ UD_LINK_TARGETS=(.Brewfile)
 
 common_setup() {
   setup_symlinks
+
+  # Defined in $BASE_DIR/lib/setup.bashrc
   setup_dotfiles
   setup_clenv
   setup_ohmyzsh
-}
-
-chsh_zsh() {
-  if [[ $SHELL != "/bin/zsh" ]]; then
-    if [[ -x /bin/zsh ]]; then
-      sudo chsh -s /bin/zsh $USER
-    else
-      echo "[error] /bin/zsh not executable!"
-      return 1
-    fi
-  fi
 }
 
 setup_symlinks() {
   local _lt
   for _lt in ${UD_LINK_TARGETS[@]}; do
     symlink $_lt
-  done
-}
-
-setup_dotfiles() {
-  local df_shell=
-  [[ $SETUP_SHELL = "zsh" ]] && df_shell=/bin/zsh
-  DF_SHELL=${df_shell} $BASE_DIR/script/setup-dotfiles.sh
-}
-
-setup_clenv() {
-  if [[ ! -d $HOME/.clenv ]]; then
-    git clone git@github.com:progrhyme/clenv.git $HOME/.clenv
-    . $BASE_DIR/common/shrc.d/load_clenv.shrc
-  fi
-  clam -r $BASE_DIR/common/Clamfile
-}
-
-setup_ohmyzsh() {
-  local ohmyzsh=$HOME/.oh-my-zsh
-  local ohmyzsh_custom_plugins=(
-    https://github.com/zsh-users/zsh-autosuggestions
-  )
-  local git_uri _basename _plugin_dir
-
-  if [[ ! -d $ohmyzsh ]]; then
-    # Install oh-my-zsh
-    curl -Lo /tmp/install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-    RUNZSH=no sh /tmp/install.sh
-
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-  fi
-
-  for git_uri in "${ohmyzsh_custom_plugins[@]}"; do
-    _basename=${git_uri##*/}
-    _basename=${_basename%.git}
-    _plugin_dir="${ohmyzsh}/custom/plugins/${_basename}"
-    if [[ ! -d $_plugin_dir ]]; then
-      git clone $git_uri $_plugin_dir
-    fi
   done
 }
 
@@ -86,7 +38,7 @@ case "$SETUP_SHELL" in
     ;;
   "zsh"  )
     UD_LINK_TARGETS+=(.zshenv .zshrc)
-    chsh_zsh
+    change_shell_to /bin/zsh
     common_setup
     ;;
   * )

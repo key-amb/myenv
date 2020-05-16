@@ -11,20 +11,10 @@ UD_LINK_TARGETS=(.Brewfile)
 
 common_setup() {
   setup_symlinks
+
+  # Defined in $BASE_DIR/lib/setup.bashrc
   setup_dotfiles
   setup_clenv
-}
-
-chsh_zsh() {
-  if [[ ! "$SHELL" =~ /zsh$ ]]; then
-    # Assume zsh installed by Homebrew
-    if [[ -x /usr/local/bin/zsh ]]; then
-      sudo chsh -s /usr/local/bin/zsh $USER
-    else
-      echo "[error] /usr/local/bin/zsh not executable!"
-      return 1
-    fi
-  fi
 }
 
 setup_symlinks() {
@@ -32,20 +22,6 @@ setup_symlinks() {
   for _lt in ${UD_LINK_TARGETS[@]}; do
     symlink $_lt
   done
-}
-
-setup_dotfiles() {
-  local df_shell=
-  [[ $SETUP_SHELL = "zsh" ]] && df_shell=/bin/zsh
-  DF_SHELL=${df_shell} $BASE_DIR/script/setup-dotfiles.sh
-}
-
-setup_clenv() {
-  if [[ ! -d $HOME/.clenv ]]; then
-    git clone git@github.com:progrhyme/clenv.git $HOME/.clenv
-    . $BASE_DIR/common/shrc.d/load_clenv.shrc
-  fi
-  clam -r $BASE_DIR/common/Clamfile
 }
 
 #-------------
@@ -58,7 +34,7 @@ case "$SETUP_SHELL" in
     ;;
   "zsh"  )
     UD_LINK_TARGETS+=(.zshenv .zshrc)
-    chsh_zsh
+    change_shell_to /usr/local/bin/zsh
     common_setup
     ;;
   * )
