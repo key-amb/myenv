@@ -1,19 +1,19 @@
 # cargo
-if [ -d $HOME/.cargo ]; then
+if [[ -d $HOME/.cargo ]]; then
   if ! (echo $PATH | grep $HOME/.cargo/bin >/dev/null 2>&1); then
     . $HOME/.cargo/env
   fi
 fi
 
 # anyenv
-if [ -d $HOME/.anyenv ]; then
+if [[ -d $HOME/.anyenv ]]; then
   if ! (echo $PATH | grep $HOME/.anyenv >/dev/null 2>&1); then
     eval "$(anyenv init -)"
   fi
 fi
 
 # nodebrew
-if [ -d ${HOME}/.nodebrew ]; then
+if [[ -d ${HOME}/.nodebrew ]]; then
   PATH=$HOME/.nodebrew/current/bin:$PATH
 fi
 
