@@ -49,22 +49,11 @@ PATH="$PATH:${MYENV_ROOT}/common/bin"
 setopt prompt_subst
 
 ############################################################
-# extentional settings
-if [[ -d $HOME/.zshrc.d ]]; then
-  for file in `find $HOME/.zshrc.d -mindepth 1`; do
-    source $file
-  done
-fi
-
-############################################################
-
 # oh-my-zsh
 plugins=(
   shrink-path
+  zsh-autosuggestions
 )
-if [[ "${ITERM_SHELL_INTEGRATION_INSTALLED:-}" != "Yes" ]]; then
-  plugins+=(zsh-autosuggestions)
-fi
 source $ZSH/oh-my-zsh.sh
 ## unset vars set by oh-my-zsh
 unset PAGER LESS
@@ -114,7 +103,21 @@ precmd () {
     RPROMPT=""
   fi
 }
+# /PROMPT settings (2)
+#===========================================================
 
+# remove duplicate PATH
+typeset -U path PATH
+
+############################################################
+# extentional settings
+if [[ -d $HOME/.zshrc.d ]]; then
+  for file in `find $HOME/.zshrc.d -mindepth 1`; do
+    source $file
+  done
+fi
+
+# PROMPT settings (3)
 ## overwrite build_prompt() from agnoster.zsh-theme
 if [[ "${ITERM_SHELL_INTEGRATION_INSTALLED:-}" = "Yes" ]]; then
   build_prompt() {
@@ -133,12 +136,6 @@ else
   }
 fi
 PROMPT='%{%f%b%k%}$(build_prompt) '
-
-# /PROMPT settings (2)
-#===========================================================
-
-# remove duplicate PATH
-typeset -U path PATH
 
 ############################################################
 # scripts to exec on login
