@@ -5,4 +5,12 @@ if [[ -d "$HOME/.clenv" ]]; then
   if ! (echo "$PATH" | grep "$HOME/.clenv/shims" &>/dev/null); then
     eval "$(clenv init -)"
   fi
+
+  # load libraries
+  if [[ -n "${CLENV_LIBRARIES:-}" ]]; then
+    for _lib in "${CLENV_LIBRARIES[@]}"; do
+      eval "$(cload $_lib)"
+    done
+    unset _lib
+  fi
 fi

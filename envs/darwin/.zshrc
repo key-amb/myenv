@@ -1,6 +1,12 @@
 # load common shrc
+CLENV_LIBRARIES=(gcloud-prompt)
 . $MYENV_ROOT/common/shrc.d/load_apps.shrc
 . $MYENV_ROOT/common/shrc.d/aliases
+
+# disable by default
+echo "Execute \e[1mtoggle_gcloud_prompt\e[0m to show/hide gcloud info on prompt"
+GCLOUD_PROMPT_ENABLED=
+GCLOUD_PROMPT_CONFIG_KEYS=(core.project compute.region)
 
 # Colors
 autoload -U colors
@@ -82,7 +88,7 @@ if [[ -r $__zsh_kubectl_prompt && -z "${ZSH_KUBECTL_PROMPT:-}" ]]; then
 
   if [[ ! -v __KUBECTL_PROMPT__ ]]; then
     echo "Execute \e[1mtoggle_kubectl_prompt\e[0m to show/hide Kubernetes" \
-      "context/namespace on prompt,"
+      "context/namespace on prompt"
     __KUBECTL_PROMPT__=
   fi
 
@@ -96,13 +102,6 @@ if [[ -r $__zsh_kubectl_prompt && -z "${ZSH_KUBECTL_PROMPT:-}" ]]; then
 fi
 unset __zsh_kubectl_prompt
 
-precmd () {
-  if [[ -n "${__KUBECTL_PROMPT__:-}" ]]; then
-    RPROMPT="%F{blue}<${ZSH_KUBECTL_PROMPT}>%f"
-  else
-    RPROMPT=""
-  fi
-}
 # /PROMPT settings (2)
 #===========================================================
 
@@ -117,6 +116,7 @@ if [[ -d $HOME/.zshrc.d ]]; then
   done
 fi
 
+#===========================================================
 # PROMPT settings (3)
 ## overwrite build_prompt() from agnoster.zsh-theme
 if [[ "${ITERM_SHELL_INTEGRATION_INSTALLED:-}" = "Yes" ]]; then
@@ -136,6 +136,20 @@ else
   }
 fi
 PROMPT='%{%f%b%k%}$(build_prompt) '
+
+precmd () {
+  if [[ -n "${__KUBECTL_PROMPT__:-}" ]]; then
+    RPROMPT="%F{blue}<${ZSH_KUBECTL_PROMPT}>%f"
+  else
+    RPROMPT=""
+  fi
+
+  if [[ -n "${GCLOUD_PROMPT_ENABLED:-}" ]]; then
+    RPROMPT="%F{cyan}<\$(gcloud_prompt)>%f${RPROMPT}"
+  fi
+}
+# /PROMPT settings (3)
+#===========================================================
 
 ############################################################
 # scripts to exec on login
