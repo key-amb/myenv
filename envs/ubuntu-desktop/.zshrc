@@ -1,7 +1,12 @@
 # load common shrc
+CLENV_LIBRARIES=(gcloud-prompt)
 . $MYENV_ROOT/common/shrc.d/load_linuxbrew.shrc
 . $MYENV_ROOT/common/shrc.d/load_apps.shrc
 . $MYENV_ROOT/common/shrc.d/aliases
+
+echo "Execute \e[1mtoggle_gcloud_prompt\e[0m to show/hide gcloud info on prompt"
+#GCLOUD_PROMPT_ENABLED=
+GCLOUD_PROMPT_CONFIG_KEYS=(core.project compute.region)
 
 # Colors
 autoload -U colors
@@ -94,7 +99,7 @@ if [[ -r $__zsh_kubectl_prompt && -z "${ZSH_KUBECTL_PROMPT:-}" ]]; then
   if [[ ! -v __KUBECTL_PROMPT__ ]]; then
     echo "Execute \e[1mtoggle_kubectl_prompt\e[0m to show/hide Kubernetes" \
       "context/namespace on prompt,"
-    __KUBECTL_PROMPT__=1
+    __KUBECTL_PROMPT__=
   fi
 
   toggle_kubectl_prompt() {
@@ -108,10 +113,19 @@ fi
 unset __zsh_kubectl_prompt
 
 precmd () {
+  local prompt_info=
   if [[ -n "${__KUBECTL_PROMPT__:-}" ]]; then
-    RPROMPT="%F{blue}<${ZSH_KUBECTL_PROMPT}>%f"
+    prompt_info="%F{blue}[⎈:${ZSH_KUBECTL_PROMPT}]%f"
+  fi
+
+  if [[ -n "${GCLOUD_PROMPT_ENABLED:-}" ]]; then
+    prompt_info="%F{cyan}[\U2601:\$(gcloud_prompt)]%f${prompt_info}"
+  fi
+
+  if ((${#prompt_info} > 32)); then
+    print -P $prompt_info
   else
-    RPROMPT=""
+    RPROMPT=$prompt_info
   fi
 }
 # /PROMPT settings (2)
