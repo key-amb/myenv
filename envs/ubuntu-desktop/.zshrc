@@ -114,18 +114,34 @@ unset __zsh_kubectl_prompt
 
 precmd () {
   local prompt_info=
-  if [[ -n "${__KUBECTL_PROMPT__:-}" ]]; then
-    prompt_info="%F{blue}[⎈:${ZSH_KUBECTL_PROMPT}]%f"
-  fi
+  local _either _bg=$CURRENT_BG
 
   if [[ -n "${GCLOUD_PROMPT_ENABLED:-}" ]]; then
-    prompt_info="%F{cyan}[\U2601:\$(gcloud_prompt)]%f${prompt_info}"
+    _either=on
+    CURRENT_BG=cyan
+    prompt_info="$(prompt_segment $CURRENT_BG black "\U2601  $(gcloud_prompt)")"
   fi
 
-  if ((${#prompt_info} > 32)); then
+  if [[ -n "${__KUBECTL_PROMPT__:-}" ]]; then
+    _either=on
+    local _kp="⎈ ${ZSH_KUBECTL_PROMPT}"
+    if [[ -n "${GCLOUD_PROMPT_ENABLED:-}" ]]; then
+      prompt_info="${prompt_info}$(prompt_segment blue white ${_kp})"
+      CURRENT_BG=blue
+    else
+      CURRENT_BG=blue
+      prompt_info="$(prompt_segment $CURRENT_BG white ${_kp})"
+    fi
+  fi
+
+  if [[ -n "${_either}" ]]; then
+    prompt_info="${prompt_info}$(prompt_end)"
+    CURRENT_BG=$_bg
+  fi
+
+  if ((${#prompt_info} > 0)); then
+    print
     print -P $prompt_info
-  else
-    RPROMPT=$prompt_info
   fi
 }
 # /PROMPT settings (2)
