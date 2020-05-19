@@ -95,6 +95,15 @@ setup_dotfiles() {
   DF_SHELL=${df_shell} $BASE_DIR/script/setup-dotfiles.sh
 }
 
+setup_basher() {
+  . $BASE_DIR/lib/basher.bashrc
+  if [[ ! -d $HOME/.basher ]]; then
+    git clone https://github.com/basherpm/basher.git $HOME/.basher
+    . $BASE_DIR/common/shrc.d/load_basher.shrc
+  fi
+  basher_bundle_install
+}
+
 setup_clenv() {
   if [[ ! -d $HOME/.clenv ]]; then
     git clone git@github.com:progrhyme/clenv.git $HOME/.clenv
