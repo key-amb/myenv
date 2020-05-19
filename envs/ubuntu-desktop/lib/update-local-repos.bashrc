@@ -1,9 +1,14 @@
 LOCAL_REPOS=(
   $HOME/.dotfiles
   $HOME/.myenv
-  $HOME/.clenv
   $HOME/my/repos/tech-notes
 )
+
+for _repo in .clenv .basher; do
+  if [[ -d "$HOME/${_repo}" ]]; then
+    LOCAL_REPOS+=($HOME/${_repo})
+  fi
+done
 
 check_brew_update() {
   local tsfile="${TMPD}/Homebrew.${YMD}"
