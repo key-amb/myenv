@@ -1,7 +1,8 @@
 # load common shrc
-CLENV_LIBRARIES=(gcloud-prompt)
 . $MYENV_ROOT/common/shrc.d/load_linuxbrew.shrc
 . $MYENV_ROOT/common/shrc.d/load_apps.shrc
+CLENV_LIBRARIES=(gcloud-prompt)
+. $MYENV_ROOT/common/shrc.d/load_clenv.shrc
 . $MYENV_ROOT/common/shrc.d/aliases
 
 echo "Execute \e[1mtoggle_gcloud_prompt\e[0m to show/hide gcloud info on prompt"

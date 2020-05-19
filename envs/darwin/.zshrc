@@ -1,6 +1,7 @@
 # load common shrc
-CLENV_LIBRARIES=(gcloud-prompt)
 . $MYENV_ROOT/common/shrc.d/load_apps.shrc
+CLENV_LIBRARIES=(gcloud-prompt)
+. $MYENV_ROOT/common/shrc.d/load_clenv.shrc
 . $MYENV_ROOT/common/shrc.d/aliases
 
 # disable by default
