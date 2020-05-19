@@ -3,6 +3,8 @@
 set -euo pipefail
 
 PROG=$(basename $0)
+base_dir="$(cd $(dirname $0)/..; pwd)"
+. $base_dir/lib/$PROG.bashrc
 
 FORCE=
 case "${1:-}" in
@@ -48,11 +50,12 @@ for repo in ${LOCAL_REPOS[@]}; do
   touch $tsfile
 done
 
-tsfile="$TMPD/clam-modules.$YMD"
-if [[ $FORCE || ! -e $tsfile ]]; then
-  clam -r $HOME/.myenv/common/Clamfile
-  rm -f "$TMPD/clam-modules.*"
-  touch $tsfile
+if command -v clam $>/dev/null; then
+  update_clam_modules
+fi
+
+if command -v basher &>/dev/null; then
+  check_basher_outdated
 fi
 
 exit
