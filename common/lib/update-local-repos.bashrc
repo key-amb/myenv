@@ -1,4 +1,34 @@
 # bash
+# Library for common/bin/update-local-repos
+
+TMPD=$HOME/tmp/$PROG
+
+# lock & unlock
+LOCK_DIR=$TMPD/lock.d
+MAX_RETRY=5
+SLEEP=6
+
+get_lock() {
+  local retry=0
+  while true; do
+    if mkdir $LOCK_DIR &>/dev/null; then
+      if ((retry > 0)); then
+        echo "[info] Succeeded to get lock."
+      fi
+      return 0
+    fi
+    ((++retry > MAX_RETRY)) && break
+    echo "[notice] Failed to get lock. Retrying ... (${retry})"
+    sleep $SLEEP
+  done
+
+  echo "[warn] Retry failed! Abort!"
+  return 1
+}
+
+unlock() {
+  rmdir $LOCK_DIR
+}
 
 # update clenv/clam modules
 update_clam_modules() {
