@@ -22,7 +22,7 @@ mkdir -p $TMPD
 
 get_lock || exit
 
-trap unlock 1 2 3 15
+trap unlock 0 1 2 3 15
 
 cleanup_tmpdir
 
@@ -35,7 +35,7 @@ if [[ -z ${LOCAL_REPOS:-} ]]; then
   LOCAL_REPOS=($HOME/.myenv)
 fi
 
-for repo in ${LOCAL_REPOS[@]}; do
+for repo_branch_txt in ${LOCAL_REPOS[@]}; do
   repo_branch=(${repo_branch_txt//:/ })
   repo="${repo_branch[0]}"
   branch="${repo_branch[1]:-master}"
@@ -66,8 +66,6 @@ fi
 if command -v basher &>/dev/null; then
   check_basher_outdated
 fi
-
-unlock
 
 exit
 
