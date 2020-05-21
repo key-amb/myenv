@@ -30,6 +30,10 @@ unlock() {
   rmdir $LOCK_DIR
 }
 
+cleanup_tmpdir() {
+  find $TMPD -mtime +3 -exec rm -f {} \;
+}
+
 # update clenv/clam modules
 update_clam_modules() {
   tsfile="$TMPD/clam-modules.$YMD"
