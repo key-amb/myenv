@@ -162,6 +162,13 @@ fi
 # direnv
 eval "$(direnv hook zsh)"
 
+# zsh-syntax-highlighting
+_highlighter="${HOMEBREW_PREFIX:-}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if [[ -r "${_highlighter}" ]]; then
+  source $_highlighter
+fi
+unset _highlighter
+
 ############################################################
 # scripts to exec on login
 update-local-repos
