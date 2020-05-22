@@ -1,6 +1,6 @@
 # load common shrc
 . $MYENV_ROOT/common/shrc.d/load_apps.shrc
-. $MYENV_ROOT/common/shrc.d/load_clenv.shrc
+. $MYENV_ROOT/common/shrc.d/load_basher.shrc
 . $MYENV_ROOT/common/shrc.d/aliases
 . $MYENV_ROOT/submodule/sh-pathctl/pathctl.shrc
 

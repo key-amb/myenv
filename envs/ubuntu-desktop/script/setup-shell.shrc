@@ -17,7 +17,7 @@ common_setup() {
 
   # Defined in $BASE_DIR/lib/setup.bashrc
   setup_dotfiles
-  setup_ohmyzsh
+  setup_basher
 }
 
 setup_symlinks() {
@@ -34,13 +34,12 @@ case "$SETUP_SHELL" in
   "bash" )
     UD_LINK_TARGETS+=(.bash_profile .bashrc)
     common_setup
-    setup_clenv
     ;;
   "zsh"  )
     UD_LINK_TARGETS+=(.zshenv .zshrc)
     change_shell_to /bin/zsh
     common_setup
-    setup_basher
+    setup_ohmyzsh
     ;;
   * )
     echo "[error] Unexpected shell!! $SETUP_SHELL" >&2
