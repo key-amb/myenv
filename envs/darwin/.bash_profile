@@ -11,3 +11,5 @@ fi
 HISTSIZE=1000
 SAVEHIST=1000
 HISTTIMEFORMAT='%y/%m/%d %H:%M:%S  '
+
+GCLOUD_SDK_ROOT="${HOME}/vendor/google-cloud-sdk"
