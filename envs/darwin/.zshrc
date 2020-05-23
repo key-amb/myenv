@@ -118,6 +118,9 @@ if [[ -d $HOME/.zshrc.d ]]; then
   done
 fi
 
+# direnv
+eval "$(direnv hook zsh)"
+
 #===========================================================
 # PROMPT settings (3)
 ## overwrite build_prompt() from agnoster.zsh-theme
