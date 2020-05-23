@@ -1,7 +1,7 @@
 # load common shrc
 . $MYENV_ROOT/common/shrc.d/load_apps.shrc
-CLENV_LIBRARIES=(gcloud-prompt)
-. $MYENV_ROOT/common/shrc.d/load_clenv.shrc
+_BASHER_INCLUDES=(progrhyme/gcloud-prompt:gcloud-prompt.sh)
+. $MYENV_ROOT/common/shrc.d/load_basher.shrc
 . $MYENV_ROOT/common/shrc.d/aliases
 
 # disable by default

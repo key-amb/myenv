@@ -1,7 +1,7 @@
 LOCAL_REPOS=(
   $HOME/.dotfiles
   $HOME/.myenv
-  $HOME/.clenv
+  $HOME/.basher
   $HOME/my/repos/tech-notes
 )
 
