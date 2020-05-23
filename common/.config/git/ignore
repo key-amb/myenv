@@ -6,3 +6,5 @@
 [._]*.sw[a-p]
 [._]sw[a-p]
 
+### direnv ###
+\.envrc
