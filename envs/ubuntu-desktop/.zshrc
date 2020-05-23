@@ -54,6 +54,7 @@ PATH="$PATH:${MYENV_ROOT}/common/bin"
 
 # PROMPT settings (1)
 setopt prompt_subst
+RPROMPT=$'%{\e[38;5;240m%}%*%{\e[0m%}'
 
 # oh-my-zsh
 plugins=(
