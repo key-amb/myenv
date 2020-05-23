@@ -54,6 +54,7 @@ PATH="$PATH:${MYENV_ROOT}/common/bin"
 
 # PROMPT settings (1)
 setopt prompt_subst
+RPROMPT="%F{247}%*%f"
 
 ############################################################
 # oh-my-zsh
@@ -139,14 +140,35 @@ fi
 PROMPT='%{%f%b%k%}$(build_prompt) '
 
 precmd () {
-  if [[ -n "${__KUBECTL_PROMPT__:-}" ]]; then
-    RPROMPT="%F{blue}<${ZSH_KUBECTL_PROMPT}>%f"
-  else
-    RPROMPT=""
-  fi
+  local prompt_info=
+  local _either _bg=$CURRENT_BG
 
   if [[ -n "${GCLOUD_PROMPT_ENABLED:-}" ]]; then
-    RPROMPT="%F{cyan}<\$(gcloud_prompt)>%f${RPROMPT}"
+    _either=on
+    CURRENT_BG=cyan
+    prompt_info="$(prompt_segment $CURRENT_BG black "\U2601  $(gcloud_prompt)")"
+  fi
+
+  if [[ -n "${__KUBECTL_PROMPT__:-}" ]]; then
+    _either=on
+    local _kp="⎈ ${ZSH_KUBECTL_PROMPT}"
+    if [[ -n "${GCLOUD_PROMPT_ENABLED:-}" ]]; then
+      prompt_info="${prompt_info}$(prompt_segment blue white ${_kp})"
+      CURRENT_BG=blue
+    else
+      CURRENT_BG=blue
+      prompt_info="$(prompt_segment $CURRENT_BG white ${_kp})"
+    fi
+  fi
+
+  if [[ -n "${_either}" ]]; then
+    prompt_info="${prompt_info}$(prompt_end)"
+    CURRENT_BG=$_bg
+  fi
+
+  if ((${#prompt_info} > 0)); then
+    print
+    print -P $prompt_info
   fi
 }
 # /PROMPT settings (3)
