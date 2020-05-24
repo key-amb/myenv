@@ -23,6 +23,10 @@ common_setup() {
 setup_symlinks() {
   local _lt
   for _lt in ${UD_LINK_TARGETS[@]}; do
+    local _dir="${_lt%/*}"
+    if [[ "$_dir" != "$_lt" ]]; then
+      mkdir -p "$HOME/$_dir"
+    fi
     symlink $_lt
   done
 }
@@ -36,7 +40,10 @@ case "$SETUP_SHELL" in
     common_setup
     ;;
   "zsh"  )
-    UD_LINK_TARGETS+=(.zshenv .zshrc)
+    UD_LINK_TARGETS+=(
+      .zshenv.extra
+      .zshrc.d/00-ubuntu-desktop.zshrc
+    )
     change_shell_to /bin/zsh
     common_setup
     setup_ohmyzsh

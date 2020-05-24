@@ -152,14 +152,6 @@ precmd () {
 # remove duplicate PATH
 typeset -U path PATH
 
-############################################################
-# extentional settings
-if [[ -d $HOME/.zshrc.d ]]; then
-  for file in `find $HOME/.zshrc.d -mindepth 1`; do
-    source $file
-  done
-fi
-
 # direnv
 eval "$(direnv hook zsh)"
 
