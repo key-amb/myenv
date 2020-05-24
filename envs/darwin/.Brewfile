@@ -1,5 +1,10 @@
 tap "homebrew/bundle"
 tap "homebrew/core"
+
+tap "homebrew/cask"
+cask_args appdir: "/Applications"
+cask "keycastr"
+
 brew "autoconf"
 brew "bash"
 brew "bison"
