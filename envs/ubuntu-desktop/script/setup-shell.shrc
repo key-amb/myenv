@@ -13,22 +13,10 @@ UD_LINK_TARGETS=(.Brewfile)
 # Functions
 
 common_setup() {
-  setup_symlinks
-
   # Defined in $BASE_DIR/lib/setup.bashrc
+  setup_symlinks
   setup_dotfiles
   setup_basher
-}
-
-setup_symlinks() {
-  local _lt
-  for _lt in ${UD_LINK_TARGETS[@]}; do
-    local _dir="${_lt%/*}"
-    if [[ "$_dir" != "$_lt" ]]; then
-      mkdir -p "$HOME/$_dir"
-    fi
-    symlink $_lt
-  done
 }
 
 #-------------
@@ -56,4 +44,3 @@ case "$SETUP_SHELL" in
     return 1
     ;;
 esac
-

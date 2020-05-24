@@ -45,6 +45,11 @@ fi
 symlink() {
   local src="${THE_ENV_DIR}/${1}";
   local link="${HOME}/$1"
+  local _dir="${link%/*}"
+  if [[ "$_dir" != "$link" ]]; then
+    mkdir -p "$_dir"
+    echo "[ok] mkdir $_dir"
+  fi
   $LINKER $src $link
 }
 
@@ -87,6 +92,14 @@ change_shell_to() {
     return
   fi
   sudo chsh -s $target
+}
+
+UD_LINK_TARGETS=()
+setup_symlinks() {
+  local _lt
+  for _lt in "${UD_LINK_TARGETS[@]}"; do
+    symlink $_lt
+  done
 }
 
 setup_dotfiles() {

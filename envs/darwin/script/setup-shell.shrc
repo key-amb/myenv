@@ -10,18 +10,10 @@ SETUP_SHELL=${SETUP_SHELL:-zsh}
 UD_LINK_TARGETS=(.Brewfile)
 
 common_setup() {
-  setup_symlinks
-
   # Defined in $BASE_DIR/lib/setup.bashrc
+  setup_symlinks
   setup_dotfiles
   setup_basher
-}
-
-setup_symlinks() {
-  local _lt
-  for _lt in ${UD_LINK_TARGETS[@]}; do
-    symlink $_lt
-  done
 }
 
 #-------------
