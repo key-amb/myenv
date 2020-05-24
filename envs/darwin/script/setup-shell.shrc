@@ -33,7 +33,10 @@ case "$SETUP_SHELL" in
     common_setup
     ;;
   "zsh"  )
-    UD_LINK_TARGETS+=(.zshenv .zshrc)
+    UD_LINK_TARGETS+=(
+      .zshenv.extra
+      .zshrc.d/00-darwin.zshrc
+    )
     change_shell_to /usr/local/bin/zsh
     common_setup
     setup_ohmyzsh
@@ -43,4 +46,3 @@ case "$SETUP_SHELL" in
     return 1
     ;;
 esac
-
