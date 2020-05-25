@@ -5,6 +5,7 @@ BASHER_BUNDLE_PACKAGES=(
   progrhyme/bash-git-push-carefully
   progrhyme/toolbox
   progrhyme/gcloud-prompt
+  progrhyme/sh-pathctl
 )
 
 basher_bundle_install() {
