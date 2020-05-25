@@ -111,7 +111,7 @@ setup_dotfiles() {
 }
 
 setup_basher() {
-  . $BASE_DIR/lib/basher.bashrc
+  source $DOTFILES/lib/basher.bashrc
   if [[ ! -d $HOME/.basher ]]; then
     git clone https://github.com/basherpm/basher.git $HOME/.basher
     source $DOTFILES/shrc.d/load_basher.shrc
