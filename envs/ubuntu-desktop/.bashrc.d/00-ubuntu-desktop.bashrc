@@ -1,8 +1,8 @@
 # load common shrc
 . $MYENV_ROOT/common/shrc.d/load_apps.shrc
-. $MYENV_ROOT/common/shrc.d/load_basher.shrc
-. $MYENV_ROOT/common/shrc.d/aliases
-. $MYENV_ROOT/submodule/sh-pathctl/pathctl.shrc
+_BASHER_INCLUDES=(progrhyme/sh-pathctl:pathctl.shrc)
+source $DOTFILES/shrc.d/load_basher.shrc
+source $DOTFILES/shrc.d/aliases
 
 ## custom PATH
 PATH=".:$HOME/bin:$PATH"

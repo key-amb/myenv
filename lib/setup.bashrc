@@ -5,6 +5,8 @@ REPO_BASE=$(cd $BASE_DIR/.. && pwd)
 PROJ_DIR=$HOME/.myenv
 THE_ENV_DIR="$PROJ_DIR/envs/$MYENV"
 
+DOTFILES=${DOTFILES:-$HOME/.dotfiles}
+
 CUSTOM_RC_DIR=""
 case "$SHELL" in
   */bash )
@@ -112,7 +114,7 @@ setup_basher() {
   . $BASE_DIR/lib/basher.bashrc
   if [[ ! -d $HOME/.basher ]]; then
     git clone https://github.com/basherpm/basher.git $HOME/.basher
-    . $BASE_DIR/common/shrc.d/load_basher.shrc
+    source $DOTFILES/shrc.d/load_basher.shrc
   fi
   basher_bundle_install
 }
@@ -120,7 +122,7 @@ setup_basher() {
 setup_clenv() {
   if [[ ! -d $HOME/.clenv ]]; then
     git clone git@github.com:progrhyme/clenv.git $HOME/.clenv
-    . $BASE_DIR/common/shrc.d/load_clenv.shrc
+    source $DOTFILES/shrc.d/load_clenv.shrc
   fi
   clam -r $BASE_DIR/common/Clamfile
 }
