@@ -1,9 +1,6 @@
 [submodule "submodule/bash-links"]
 	path = submodule/bash-links
 	url = git@github.com:progrhyme/bash-links.git
-[submodule "submodule/sh-pathctl"]
-	path = submodule/sh-pathctl
-	url = git@github.com:progrhyme/sh-pathctl.git
 [submodule "submodule/enhancd"]
 	path = submodule/enhancd
 	url = git@github.com:b4b4r07/enhancd.git
