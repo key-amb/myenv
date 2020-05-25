@@ -3,15 +3,7 @@
 # Make symlinks of dotfiles
 UD_LINK_TARGETS=(.bash_profile .bashrc)
 
-setup_clenv() {
-  if [[ ! -d $HOME/.clenv ]]; then
-    git clone git@github.com:progrhyme/clenv.git $HOME/.clenv
-    . $BASE_DIR/common/shrc.d/load_clenv.shrc
-  fi
-  clam -r $BASE_DIR/common/Clamfile
-}
-
 ## MAIN ENTRY
 setup_symlinks
 setup_dotfiles
-setup_clenv
+setup_basher
