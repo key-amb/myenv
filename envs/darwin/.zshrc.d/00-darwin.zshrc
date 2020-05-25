@@ -1,5 +1,5 @@
 # load common shrc
-. $MYENV_ROOT/common/shrc.d/load_apps.shrc
+source $DOTFILES/shrc.d/load_apps.shrc
 _BASHER_INCLUDES=(progrhyme/gcloud-prompt:gcloud-prompt.sh)
 source $DOTFILES/shrc.d/load_basher.shrc
 source $DOTFILES/shrc.d/aliases
