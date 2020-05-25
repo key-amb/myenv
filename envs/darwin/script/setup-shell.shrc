@@ -21,7 +21,10 @@ common_setup() {
 
 case "$SETUP_SHELL" in
   "bash" )
-    UD_LINK_TARGETS+=(.bash_profile .bashrc)
+    UD_LINK_TARGETS+=(
+      .bash_profile.extra
+      .bashrc.d/00-darwin.bashrc
+    )
     common_setup
     ;;
   "zsh"  )
