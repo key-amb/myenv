@@ -45,10 +45,10 @@ fi
 symlink() {
   local src="${THE_ENV_DIR}/${1}";
   local link="${HOME}/$1"
-  local _dir="${link%/*}"
-  if [[ "$_dir" != "$link" ]]; then
-    mkdir -p "$_dir"
-    echo "[ok] mkdir $_dir"
+  local _dir="${1%/*}"
+  if [[ "$_dir" != "$1" ]]; then
+    mkdir -p "$HOME/${_dir}"
+    echo "[ok] mkdir $HOME/${_dir}"
   fi
   $LINKER $src $link
 }
