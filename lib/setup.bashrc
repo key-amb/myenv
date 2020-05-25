@@ -124,7 +124,7 @@ setup_clenv() {
     git clone git@github.com:progrhyme/clenv.git $HOME/.clenv
     source $DOTFILES/shrc.d/load_clenv.shrc
   fi
-  clam -r $BASE_DIR/common/Clamfile
+  clam -r $DOTFILES/etc/Clamfile
 }
 
 setup_ohmyzsh() {
