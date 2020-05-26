@@ -1,2 +1,0 @@
-. $MYENV_ROOT/common/shrc.d/load_prog_envs.shrc
-. $MYENV_ROOT/common/shrc.d/load_vendor_apps.shrc
