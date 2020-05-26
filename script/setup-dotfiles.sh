@@ -28,6 +28,8 @@ for _script in ${SETUP_SCRIPTS[@]}; do
   $DF_OPTS script/$_script
 done
 
+$LINKER $THE_ENV_DIR $DOTFILES/envs/$MYENV
+
 exit
 
 : <<'__EOF__'

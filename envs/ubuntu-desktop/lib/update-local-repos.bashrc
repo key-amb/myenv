@@ -1,6 +1,7 @@
 LOCAL_REPOS=(
   $HOME/.dotfiles
   $HOME/.myenv
+  $HOME/.basher
   $HOME/my/repos/tech-notes
 )
 
@@ -28,6 +29,8 @@ check_brew_update() {
   rm $tmpfile
 }
 
-if [[ -n "${HOMEBREW_PREFIX:-}" ]]; then
-  check_brew_update
-fi
+update_local_env() {
+  if [[ -n "${HOMEBREW_PREFIX:-}" ]]; then
+    check_brew_update
+  fi
+}

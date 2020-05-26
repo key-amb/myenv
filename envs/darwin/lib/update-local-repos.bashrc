@@ -23,4 +23,6 @@ check_brew_update() {
   rm $tmpfile
 }
 
-check_brew_update
+update_local_env() {
+  check_brew_update
+}
