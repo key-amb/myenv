@@ -39,3 +39,16 @@ See also `envs/${target_env}/README.md` if found.
 This project depends on [progrhyme/dotfiles](https://github.com/progrhyme/dotfiles).
 
 Some scripts suppose it is checked out to the path specified by `$DOTFILES`.
+
+# Specification
+## script/setup-shellenv.sh
+
+This script loads `envs/$MYENV/script/setup-shell.shrc` internally.
+
+## script/setup-dotfiles.sh
+
+Set up [progrhyme/dotfiles](https://github.com/progrhyme/dotfiles) doing followings:
+
+1. Clone dotfiles repository
+1. Execute set-up scripts in dotfiles
+1. Create symbolic link from `$DOTFILES/envs/$MYENV` to `envs/$MYENV`

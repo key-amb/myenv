@@ -1,3 +1,8 @@
+# bash
+#
+# Supposed to be loaded by bin/update-local-repos in
+# https://github.com/progrhyme/dotfiles
+
 LOCAL_REPOS=(
   $HOME/.dotfiles
   $HOME/.myenv
