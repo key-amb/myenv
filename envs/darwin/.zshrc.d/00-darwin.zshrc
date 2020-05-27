@@ -118,6 +118,9 @@ eval "$(direnv hook zsh)"
 
 #===========================================================
 # PROMPT settings (3)
+
+source $DOTFILES/zshrc.d/darwin/iterm2_shell_integration.zsh
+
 ## overwrite build_prompt() from agnoster.zsh-theme
 if [[ "${ITERM_SHELL_INTEGRATION_INSTALLED:-}" = "Yes" ]]; then
   build_prompt() {
