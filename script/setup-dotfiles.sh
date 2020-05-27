@@ -28,7 +28,7 @@ for _script in ${SETUP_SCRIPTS[@]}; do
   $DF_OPTS script/$_script
 done
 
-$LINKER $THE_ENV_DIR $DOTFILES/envs/$MYENV
+$LINKER $THE_ENV_DIR $DOTS_ROOT/envs/$MYENV
 
 exit
 

@@ -38,7 +38,7 @@ See also `envs/${target_env}/README.md` if found.
 
 This project depends on [progrhyme/dotfiles](https://github.com/progrhyme/dotfiles).
 
-Some scripts suppose it is checked out to the path specified by `$DOTFILES`.
+Some scripts suppose it is checked out to the path specified by `$DOTS_ROOT`.
 
 # Specification
 ## script/setup-shellenv.sh
@@ -51,4 +51,4 @@ Set up [progrhyme/dotfiles](https://github.com/progrhyme/dotfiles) doing followi
 
 1. Clone dotfiles repository
 1. Execute set-up scripts in dotfiles
-1. Create symbolic link from `$DOTFILES/envs/$MYENV` to `envs/$MYENV`
+1. Create symbolic link from `$DOTS_ROOT/envs/$MYENV` to `envs/$MYENV`

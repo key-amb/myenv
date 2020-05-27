@@ -1,8 +1,8 @@
 # load common shrc
-source $DOTFILES/shrc.d/load_apps.shrc
+source $DOTS_ROOT/shrc.d/load_apps.shrc
 _BASHER_INCLUDES=(progrhyme/gcloud-prompt:gcloud-prompt.sh)
-source $DOTFILES/shrc.d/load_basher.shrc
-source $DOTFILES/shrc.d/aliases
+source $DOTS_ROOT/shrc.d/load_basher.shrc
+source $DOTS_ROOT/shrc.d/aliases
 
 # disable by default
 echo "Execute \e[1mtoggle_gcloud_prompt\e[0m to show/hide gcloud info on prompt"
@@ -119,7 +119,7 @@ eval "$(direnv hook zsh)"
 #===========================================================
 # PROMPT settings (3)
 
-source $DOTFILES/zshrc.d/darwin/iterm2_shell_integration.zsh
+source $DOTS_ROOT/zshrc.d/darwin/iterm2_shell_integration.zsh
 
 ## overwrite build_prompt() from agnoster.zsh-theme
 if [[ "${ITERM_SHELL_INTEGRATION_INSTALLED:-}" = "Yes" ]]; then

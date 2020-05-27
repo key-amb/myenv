@@ -1,8 +1,8 @@
 # load common shrc
-source $DOTFILES/shrc.d/load_apps.shrc
+source $DOTS_ROOT/shrc.d/load_apps.shrc
 _BASHER_INCLUDES=(progrhyme/sh-pathctl:pathctl.shrc)
-source $DOTFILES/shrc.d/load_basher.shrc
-source $DOTFILES/shrc.d/aliases
+source $DOTS_ROOT/shrc.d/load_basher.shrc
+source $DOTS_ROOT/shrc.d/aliases
 
 ## custom PATH
 PATH=".:$HOME/bin:$PATH"

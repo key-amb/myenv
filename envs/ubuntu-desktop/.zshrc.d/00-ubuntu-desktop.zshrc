@@ -1,9 +1,9 @@
 # load common shrc
-source $DOTFILES/shrc.d/load_linuxbrew.shrc
-source $DOTFILES/shrc.d/load_apps.shrc
+source $DOTS_ROOT/shrc.d/load_linuxbrew.shrc
+source $DOTS_ROOT/shrc.d/load_apps.shrc
 _BASHER_INCLUDES=(progrhyme/gcloud-prompt:gcloud-prompt.sh)
-source $DOTFILES/shrc.d/load_basher.shrc
-source $DOTFILES/shrc.d/aliases
+source $DOTS_ROOT/shrc.d/load_basher.shrc
+source $DOTS_ROOT/shrc.d/aliases
 
 echo "Execute \e[1mtoggle_gcloud_prompt\e[0m to show/hide gcloud info on prompt"
 #GCLOUD_PROMPT_ENABLED=

@@ -5,7 +5,7 @@ REPO_BASE=$(cd $BASE_DIR/.. && pwd)
 PROJ_DIR=$HOME/.myenv
 THE_ENV_DIR="$PROJ_DIR/envs/$MYENV"
 
-DOTFILES=${DOTFILES:-$HOME/.dotfiles}
+DOTS_ROOT=${DOTS_ROOT:-$HOME/.dotfiles}
 
 CUSTOM_RC_DIR=""
 case "$SHELL" in
@@ -111,10 +111,10 @@ setup_dotfiles() {
 }
 
 setup_basher() {
-  source $DOTFILES/lib/basher.bashrc
+  source $DOTS_ROOT/lib/basher.bashrc
   if [[ ! -d $HOME/.basher ]]; then
     git clone https://github.com/basherpm/basher.git $HOME/.basher
-    source $DOTFILES/shrc.d/load_basher.shrc
+    source $DOTS_ROOT/shrc.d/load_basher.shrc
   fi
   basher_bundle_install
 }
@@ -122,9 +122,9 @@ setup_basher() {
 setup_clenv() {
   if [[ ! -d $HOME/.clenv ]]; then
     git clone git@github.com:progrhyme/clenv.git $HOME/.clenv
-    source $DOTFILES/shrc.d/load_clenv.shrc
+    source $DOTS_ROOT/shrc.d/load_clenv.shrc
   fi
-  clam -r $DOTFILES/etc/Clamfile
+  clam -r $DOTS_ROOT/etc/Clamfile
 }
 
 setup_ohmyzsh() {
