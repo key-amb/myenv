@@ -50,7 +50,6 @@ setopt hist_reduce_blanks
 
 ## custom PATH
 PATH=".:$HOME/bin:$PATH"
-PATH="$PATH:${MYENV_ROOT}/common/bin"
 
 # PROMPT settings (1)
 setopt prompt_subst

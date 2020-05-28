@@ -6,7 +6,6 @@ source $DOTS_ROOT/shrc.d/aliases
 
 ## custom PATH
 PATH=".:$HOME/bin:$PATH"
-PATH="$PATH:${MYENV_ROOT}/common/bin"
 
 # remove duplicate PATH
 pathctl_uniq
