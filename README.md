@@ -2,53 +2,58 @@
 
 Personal settings for various environments including dotfiles or bootstrap scripts.
 
-# Usage
+# Prerequisites
+
+- [progrhyme/dotfiles](https://github.com/progrhyme/dotfiles)
+
+# Prepare
+
+```sh
+mkdir -p ~/my/repos
+
+git clone git@github.com:progrhyme/dotfiles.git ~/my/repos/dotfiles
+cd ~/my/repos/dotfiles
+git submodule update --init
+
+git clone git@github.com:progrhyme/myenv.git ~/my/repos/myenv
+cd ~/my/repos/myenv
+git submodule update --init
+
+export MYENV=xxx # Choose env in envs/
+ln -s ln -s ~/my/repos/myenv/envs/$MYENV ~/my/repos/dotfiles/envs/$MYENV
+```
+
+# Setup Environment
 
 ```bash
 # (1) As login user
-
-mkdir -p ~/my/repos
-git clone git@github.com:progrhyme/myenv.git ~/my/repos/myenv
 cd ~/my/repos/myenv
 git submodule update --init
 
-# Create admin user
+## Create admin user
 script/create-admin-user.sh $ADMIN
 sudo -iu $ADMIN
 
+# --------------------
 # (2) As admin user
+## Do the same thing to `Prepare` section
 mkdir -p ~/my/repos
-git clone git@github.com:progrhyme/myenv.git ~/my/repos/myenv
-cd ~/my/repos/myenv
-git submodule update --init
+:
 
-# Set up an environment
-MYENV=${target_env} script/setup-env.sh
-MYENV=${target_env} SETUP_SHELL=${admin_shell} script/setup-shellenv.sh
+## Set up an environment
+export MYENV=xxx # Ensure
+cd ~/my/repos/myenv
+script/setup-env.sh
+cd ~/my/repos/dotfiles
+script/setup-shellenv.sh
 exit
 
+# --------------------
 # (3) As login user
-MYENV=${target_env} script/setup-shellenv.sh
+export MYENV=xxx # Ensure
+cd ~/my/repos/dotfiles
+script/setup-shellenv.sh
 exec $SHELL -l
 ```
 
 See also `envs/${target_env}/README.md` if found.
-
-# Dependencies
-
-This project depends on [progrhyme/dotfiles](https://github.com/progrhyme/dotfiles).
-
-Some scripts suppose it is checked out to the path specified by `$DOTS_ROOT`.
-
-# Specification
-## script/setup-shellenv.sh
-
-This script loads `envs/$MYENV/script/setup-shell.shrc` internally.
-
-## script/setup-dotfiles.sh
-
-Set up [progrhyme/dotfiles](https://github.com/progrhyme/dotfiles) doing followings:
-
-1. Clone dotfiles repository
-1. Execute set-up scripts in dotfiles
-1. Create symbolic link from `$DOTS_ROOT/envs/$MYENV` to `envs/$MYENV`
