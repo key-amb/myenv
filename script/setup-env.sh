@@ -7,9 +7,11 @@ base_dir="$(cd $(dirname $0)/..; pwd)"
 
 echo "[START] setup $DOTS_ENV"
 
+dots_env_dir="${DOTS_ROOT}/envs/${DOTS_ENV}"
+
 init_proj_dir
 
-env_setup_script="$DOTS_ENV_DIR/script/setup.shrc"
+env_setup_script="${dots_env_dir}/script/setup.shrc"
 
 if [[ -r $env_setup_script ]]; then
   . $env_setup_script

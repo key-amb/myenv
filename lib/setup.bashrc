@@ -5,9 +5,9 @@ if [[ -z ${BASE_DIR:-} ]]; then
 fi
 REPO_BASE=$(cd $BASE_DIR/.. && pwd)
 PROJ_DIR=$HOME/.myenv
-DOTS_ENV_DIR="$PROJ_DIR/envs/$DOTS_ENV"
 
 DOTS_ROOT=${DOTS_ROOT:-$HOME/.dotfiles}
+source "${DOTS_ROOT}/submodule/dot-sh/dot.sh"
 
 init_proj_dir() {
   if [[ -e $PROJ_DIR ]]; then
@@ -23,25 +23,8 @@ if [[ -n "${LINKS_FORCE:-}" ]]; then
   LINKER="${LINKER} --force"
 fi
 
-symlink() {
-  local src="${DOTS_ENV_DIR}/${1}";
-  local link="${HOME}/$1"
-  local _dir="${1%/*}"
-  if [[ "$_dir" != "$1" ]]; then
-    mkdir -p "$HOME/${_dir}"
-    echo "[ok] mkdir $HOME/${_dir}"
-  fi
-  $LINKER $src $link
-}
-
-symlink2() {
-  local src=$DOTS_ENV_DIR/$1
-  local link=$2
-  $LINKER $src $link
-}
-
 sync_file() {
-  local src=$DOTS_ENV_DIR/$1
+  local src=$(route $1)
   local dst=$2
   local dst_dir=${dst%/*}
   local sync_opts=""

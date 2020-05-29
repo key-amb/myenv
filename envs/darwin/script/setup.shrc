@@ -1,4 +1,4 @@
 # bash
 
-brew bundle install --file $DOTS_ENV_DIR/.Brewfile
+brew bundle install --file $dots_env_dir/.Brewfile
 
