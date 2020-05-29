@@ -1,9 +1,6 @@
 [submodule "submodule/bash-links"]
 	path = submodule/bash-links
 	url = git@github.com:progrhyme/bash-links.git
-[submodule "submodule/enhancd"]
-	path = submodule/enhancd
-	url = git@github.com:b4b4r07/enhancd.git
 [submodule "submodule/install-github-go-binary"]
 	path = submodule/install-github-go-binary
 	url = git@github.com:progrhyme/bash-install-github-go-binary.git
