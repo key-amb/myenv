@@ -2,7 +2,7 @@
 
 SETUP_SHELL=${SETUP_SHELL:-zsh}
 
-DOTFILES+=(.Brewfile)
+DOT_FILES+=(.Brewfile)
 
 case "${SETUP_SHELL}" in
   "bash" )
