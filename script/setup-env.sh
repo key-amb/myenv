@@ -5,19 +5,19 @@ set -euo pipefail
 base_dir="$(cd $(dirname $0)/..; pwd)"
 . $base_dir/lib/setup.bashrc
 
-echo "[START] setup $MYENV"
+echo "[START] setup $DOTS_ENV"
 
 init_proj_dir
 
-env_setup_script="$THE_ENV_DIR/script/setup.shrc"
+env_setup_script="$DOTS_ENV_DIR/script/setup.shrc"
 
 if [[ -r $env_setup_script ]]; then
   . $env_setup_script
 else
-  echo "No setup script for env: $MYENV"
+  echo "No setup script for env: $DOTS_ENV"
 fi
 
-echo "[END] setup $MYENV"
+echo "[END] setup $DOTS_ENV"
 
 exit
 
@@ -31,7 +31,7 @@ B<setup-env.sh> - Script to set up environments
 
 =head1 SYNOPSYS
 
-    MYENV=<target env> script/setup-env.sh
+    DOTS_ENV=<target env> script/setup-env.sh
 
 Optional Shell Variables:
 

@@ -19,8 +19,8 @@ git clone git@github.com:progrhyme/myenv.git ~/my/repos/myenv
 cd ~/my/repos/myenv
 git submodule update --init
 
-export MYENV=xxx # Choose env in envs/
-ln -s ln -s ~/my/repos/myenv/envs/$MYENV ~/my/repos/dotfiles/envs/$MYENV
+export DOTS_ENV=xxx # Choose env in envs/
+ln -s ln -s ~/my/repos/myenv/envs/$DOTS_ENV ~/my/repos/dotfiles/envs/$DOTS_ENV
 ```
 
 # Setup Environment
@@ -41,7 +41,7 @@ mkdir -p ~/my/repos
 :
 
 ## Set up an environment
-export MYENV=xxx # Ensure
+export DOTS_ENV=xxx # Ensure
 cd ~/my/repos/myenv
 script/setup-env.sh
 cd ~/my/repos/dotfiles
@@ -50,7 +50,7 @@ exit
 
 # --------------------
 # (3) As login user
-export MYENV=xxx # Ensure
+export DOTS_ENV=xxx # Ensure
 cd ~/my/repos/dotfiles
 script/setup-shellenv.sh
 exec $SHELL -l

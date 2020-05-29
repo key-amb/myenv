@@ -1,4 +1,4 @@
-export MYENV=ubuntu-desktop
+export DOTS_ENV=ubuntu-desktop
 MYENV_ROOT=$HOME/.myenv
 
 # oh-my-zsh

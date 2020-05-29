@@ -1,4 +1,4 @@
-export MYENV=darwin
+export DOTS_ENV=darwin
 MYENV_ROOT=$HOME/.myenv
 
 GCLOUD_SDK_ROOT="${HOME}/vendor/google-cloud-sdk"

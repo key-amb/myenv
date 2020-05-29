@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-MYENV=ubuntu-desktop
+DOTS_ENV=ubuntu-desktop
 ADMIN=${ADMIN:-$USER}
 BASE_DIR=$HOME/.myenv
 
@@ -41,7 +41,7 @@ admin_to_docker_group
 
 src=files/systemd/docker/service.conf
 dst=/etc/systemd/system/docker.service.d/service.conf
-if diff -u $THE_ENV_DIR/$src $dst >/dev/null 2>&1; then
+if diff -u $DOTS_ENV_DIR/$src $dst >/dev/null 2>&1; then
   echo "[info] No difference: $src to $dst"
 else
   SUDO_SYNC=1

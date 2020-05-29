@@ -5,7 +5,7 @@ if [[ -z ${BASE_DIR:-} ]]; then
 fi
 REPO_BASE=$(cd $BASE_DIR/.. && pwd)
 PROJ_DIR=$HOME/.myenv
-THE_ENV_DIR="$PROJ_DIR/envs/$MYENV"
+DOTS_ENV_DIR="$PROJ_DIR/envs/$DOTS_ENV"
 
 DOTS_ROOT=${DOTS_ROOT:-$HOME/.dotfiles}
 
@@ -24,7 +24,7 @@ if [[ -n "${LINKS_FORCE:-}" ]]; then
 fi
 
 symlink() {
-  local src="${THE_ENV_DIR}/${1}";
+  local src="${DOTS_ENV_DIR}/${1}";
   local link="${HOME}/$1"
   local _dir="${1%/*}"
   if [[ "$_dir" != "$1" ]]; then
@@ -35,13 +35,13 @@ symlink() {
 }
 
 symlink2() {
-  local src=$THE_ENV_DIR/$1
+  local src=$DOTS_ENV_DIR/$1
   local link=$2
   $LINKER $src $link
 }
 
 sync_file() {
-  local src=$THE_ENV_DIR/$1
+  local src=$DOTS_ENV_DIR/$1
   local dst=$2
   local dst_dir=${dst%/*}
   local sync_opts=""

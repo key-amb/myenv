@@ -4,7 +4,7 @@
 
 ```bash
 cd ~/my/repos/myenv
-export MYENV=centos
+export DOTS_ENV=centos
 
 # Run by user able to sudo
 script/setup-env.sh
