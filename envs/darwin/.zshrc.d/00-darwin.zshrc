@@ -145,8 +145,9 @@ precmd () {
 
   if [[ -n "${GCLOUD_PROMPT_ENABLED:-}" ]]; then
     _either=on
-    CURRENT_BG=cyan
-    prompt_info="$(prompt_segment $CURRENT_BG black "\U2601  $(gcloud_prompt)")"
+    CURRENT_BG=yellow
+    local _gcloud_icon="☁️"
+    prompt_info="$(prompt_segment $CURRENT_BG black "${_gcloud_icon}  $(gcloud_prompt)")"
   fi
 
   if [[ -n "${__KUBECTL_PROMPT__:-}" ]]; then
