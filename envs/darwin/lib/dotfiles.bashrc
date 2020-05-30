@@ -2,7 +2,10 @@
 
 SETUP_SHELL=${SETUP_SHELL:-zsh}
 
-DOT_FILES+=(.Brewfile)
+DOT_FILES+=(
+  .Brewfile
+  .config/karabiner/assets/complex_modifications/toggle-ime-by-kana-key.json
+)
 
 case "${SETUP_SHELL}" in
   "bash" )
