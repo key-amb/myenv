@@ -2,6 +2,10 @@
 
 SETUP_SHELL=${SETUP_SHELL:-zsh}
 
+DOT_FILES+=(
+  .shelp/config.yml
+)
+
 case "${SETUP_SHELL}" in
   "bash" )
     DOT_FILES+=(
@@ -14,7 +18,6 @@ case "${SETUP_SHELL}" in
       .Brewfile
       .zshenv.extra
       .zshrc.d/00-ubuntu-desktop.zshrc
-      .shelp/config.yml
     )
     ;;
   * )
