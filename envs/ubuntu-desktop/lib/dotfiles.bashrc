@@ -14,6 +14,7 @@ case "${SETUP_SHELL}" in
       .Brewfile
       .zshenv.extra
       .zshrc.d/00-ubuntu-desktop.zshrc
+      .shelp/config.yml
     )
     ;;
   * )
