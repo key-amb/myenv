@@ -1,4 +1,4 @@
-# ubuntu-desktop
+# centos
 
 # How to set up enviroment
 
